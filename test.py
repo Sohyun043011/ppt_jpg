@@ -15,6 +15,7 @@ import socket
 import subprocess
 import threading
 import urllib.request
+from urllib.parse import urljoin
 import webbrowser
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
@@ -59,10 +60,10 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_1.setChecked(True)
         
         # 활성화 버튼 설정
-        self.wallLinkBtn.toggled.connect(self.onWallOpenClick)
-        self.wallActivBtn.toggled.connect(self.onWallActivClick)
-        self.nameLinkBtn.toggled.connect(self.onNameOpenClick)
-        self.nameActivBtn.toggled.connect(self.onNameActivClick)
+        self.wallLinkBtn.clicked.connect(self.onWallOpenClick)
+        self.wallActivBtn.clicked.connect(self.onWallActivClick)
+        self.nameLinkBtn.clicked.connect(self.onNameOpenClick)
+        self.nameActivBtn.clicked.connect(self.onNameActivClick)
         
         
     def onClicked(self):
@@ -109,9 +110,9 @@ class MyWindow(QMainWindow, form_class):
         deptLabel = self.deptName.currentText()
         QMessageBox.about(self,"message","/"+deptLabel+"/"+subject)
     
-    def ping(self, ip):
+    def ping(ip):
         try:
-            urllib.request.urlopen('http://'+ip, timeout=1)
+            urllib.request.urlopen(urljoin('http://',str(ip)), timeout=1)
             return True
         except urllib.request.URLError as err:
             return False
@@ -132,12 +133,12 @@ class MyWindow(QMainWindow, form_class):
         # self.timer.start()
         
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
-        os.startfile('enable.bat.lnk')
-    
-    def onNameOpenClick(self):
-        webbrowser.get(self.chrome_path).open("192.168.0.60")
+        os.startfile('disable.bat.lnk')
     
     def onWallOpenClick(self):
+        webbrowser.get(self.chrome_path).open("192.168.0.60")
+    
+    def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
         
 if __name__ == "__main__":
