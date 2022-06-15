@@ -159,19 +159,23 @@ class MyWindow(QMainWindow, form_class):
                 run.text = inputVal[0] if shape.name=="name" else inputVal[1]
                 font = run.font
                 font.size = font_size
-    # font.color.type = font_color
+                # font.color.type = font_color
+    
+    def disableBtn(func):
+        def wrapper(self):
+            self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+            self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+            func(self)
+        return wrapper            
                 
-
-    # position,name 입력 값 받아오기 inputValue={1:['이름1','직위1'],2:[],...}
-    def inputValue(self):
-        inputValue= {}
-        for i in range(1,14):
-            nameChild = self.findChild(QLineEdit,"InputName_%d" % (i)).text()
-            namePos = self.findChild(QLineEdit,"InputPos_%d" % (i)).text()
-            inputValue[i]=[nameChild,namePos]
-        return inputValue
-    
-    
+    def createBtn_clicked(self):
+        # create 버튼 클릭시 이벤트
+        # /팀이름/subject/ 로 폴더 생성
+        subject = self.subject.text()                           # 폴더 이름
+        deptLabel = self.deptName.currentText()                 # 부서명
+        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        inputValue = self.inputValue()                          # 입력값 받아옴
+        
     def ping(self, ip):
         try:
             print('다음으로 연결 중: http://'+ip)
@@ -190,22 +194,27 @@ class MyWindow(QMainWindow, form_class):
             self.statusLabel.setText('스마트명패 연결 성공')
         else:
             self.statusLabel.setText('연결 없음')
-    
-    
-        
+            self.statusLabel.setStyleSheet("Color : Red")
+            
+    @disableBtn        
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
         os.startfile('enable.bat.lnk')
-        # self.timer.start()
-        
+        self.timer.start()
+
+    @disableBtn
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
         os.startfile('disable.bat.lnk')
     
+    @disableBtn
     def onWallOpenClick(self):
         webbrowser.get(self.chrome_path).open("192.168.0.60")
     
+    @disableBtn
     def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
-        
+    
+    
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     myWindow = MyWindow()
