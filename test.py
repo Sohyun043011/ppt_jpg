@@ -1,7 +1,6 @@
-from PyQt5 import uic,QtGui
+from PyQt5 import uic
 import os
 import sys
-import time
 from PyQt5.QtWidgets import *
 from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
@@ -11,12 +10,10 @@ from comtypes import client
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QPixmap , QIcon
 from PyQt5.QtCore import Qt, QTimer
-import socket
-import subprocess
-import threading
 import urllib.request
-from urllib.parse import urljoin
 import webbrowser
+
+dataImage_default_path="C:\Server\Gachi\Qname\dataImage"
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
@@ -39,10 +36,6 @@ class MyWindow(QMainWindow, form_class):
         self.timer.setInterval(6000)
         self.timer.timeout.connect(self.update_network)
         self.timer.start()
-        
-        
-        
-        
         
     def initSetting(self):
         # 서식 이미지 파일
@@ -218,11 +211,9 @@ class MyWindow(QMainWindow, form_class):
         os.startfile('disable.bat.lnk')
         self.timer.start()
     
-    @disableBtn
     def onWallOpenClick(self):
         webbrowser.get(self.chrome_path).open("192.168.0.60")
     
-    @disableBtn
     def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
     
