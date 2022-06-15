@@ -25,7 +25,6 @@ class MyWindow(QMainWindow, form_class):
         super().__init__()
         self.setupUi(self)
         self.initSetting()
-        self.createBtn.clicked.connect(self.createBtn_clicked)
         self.setFixedSize(1600, 850) # 창 사이즈 고정
         self.setWindowTitle('화상회의실 관리 프로그램') # 프로그램 Title 설정
         self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
@@ -109,7 +108,7 @@ class MyWindow(QMainWindow, form_class):
         qp.drawRect(500,271,41,421)
         qp.drawRect(680,270,41,421)
         
-    def makePPT(self,directory,pptx_fpath,inputValue):
+    def makePPT(self,directory,subject,pptx_fpath,inputValue):
         prs = Presentation(pptx_fpath)                  # 양식 선택시 불러옴
         #슬라이드 1~13 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌
         #placeholder : Title, Center Title, Subtitle, Body etc
@@ -120,8 +119,26 @@ class MyWindow(QMainWindow, form_class):
             inputVal = inputValue[i+1]
             shapes = slide.shapes
             self.text_on_shape(shapes,inputVal)
-        prs.save('result.pptx')
-    
+        prs.save(directory+'\\'+subject+'.pptx')
+        
+    def createBtn_clicked(self):
+        # create 버튼 클릭시 이벤트
+        # /팀이름/subject/ 로 폴더 생성
+        subject = self.subject.text()                           # 폴더 이름
+        deptLabel = self.deptName.currentText()                 # 부서명
+        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        inputValue = self.inputValue()                          # 입력값 받아옴
+        
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+            # 폴더 생성 후, ppt 생성
+            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값 
+        else: 
+            # 이미 있는 폴더인 경우, 이름 다시 설정.
+            QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
+        # label에 넣은 대로 ppt 생성
+        self.subject.clear()
+        
     def text_on_shape(self,shapes,inputVal):
         # shapes : 한 슬라이드 안
         for shape in shapes:
@@ -130,6 +147,7 @@ class MyWindow(QMainWindow, form_class):
                 text_frame = shape.text_frame
                 p = text_frame.paragraphs[0]
                 font_size = p.runs[0].font.size
+                # 색 변경이 안됨..............
                 # font_color = p.runs[0].font.color.type
                 text_frame.clear()
                 # 정렬 설정 : 중간정렬
