@@ -50,7 +50,7 @@ class MyWindow(QMainWindow, form_class):
         self.image3.setPixmap(QPixmap(pixmap3))
         
         self.statusLabel.setText('연결 없음')
-        self.statusLabel.setStyleSheet("Color : blue")
+        self.statusLabel.setStyleSheet("Color : Red")
         
         # 서식 버튼 설정
         self.radioBtn_1.toggled.connect(self.onClicked)
@@ -112,6 +112,8 @@ class MyWindow(QMainWindow, form_class):
     
     def ping(ip):
         try:
+            print('다음으로 연결 중:')
+            print(urljoin('http://',str(ip)))
             urllib.request.urlopen(urljoin('http://',str(ip)), timeout=1)
             return True
         except urllib.request.URLError as err:
