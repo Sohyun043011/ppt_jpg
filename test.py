@@ -59,10 +59,10 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_1.setChecked(True)
         
         # 활성화 버튼 설정
-        self.wallLinkBtn.connect(self.onWallOpenClick)
-        self.wallActivBtn.connect(self.onWallActivClick)
-        self.nameLinkBtn.connect(self.onNameOpenClick)
-        self.nameActivBtn.connect(self.onNameActivClick)
+        self.wallLinkBtn.toggled.connect(self.onWallOpenClick)
+        self.wallActivBtn.toggled.connect(self.onWallActivClick)
+        self.nameLinkBtn.toggled.connect(self.onNameOpenClick)
+        self.nameActivBtn.toggled.connect(self.onNameActivClick)
         
         
     def onClicked(self):
