@@ -60,6 +60,8 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_4.toggled.connect(self.onClicked)
         self.radioBtn_1.setChecked(True)
         
+        self.createBtn.clicked.connect(self.createBtn_clicked)
+        
         # 활성화 버튼 설정
         self.wallLinkBtn.clicked.connect(self.onWallOpenClick)
         self.wallActivBtn.clicked.connect(self.onWallActivClick)
@@ -93,8 +95,8 @@ class MyWindow(QMainWindow, form_class):
         qp.begin(self)
         #그리기 함수의 호출부분
         self.drawRectangles(qp)
-        qp.end()        
-    
+        qp.end()
+        
     def drawRectangles(self,qp):
         qp.setBrush(QColor(255, 136, 79))
         qp.setPen(QPen(QColor(255, 136, 79), 3))
@@ -102,14 +104,45 @@ class MyWindow(QMainWindow, form_class):
         qp.drawRect(500,271,41,421)
         qp.drawRect(680,270,41,421)
         
+    def makePPT(self,directory,pptx_fpath,inputValue):
+        prs = Presentation(pptx_fpath)                  # 양식 선택시 불러옴
+        #슬라이드 1~13 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌
+        #placeholder : Title, Center Title, Subtitle, Body etc
+    
+        for i in range(13):
+            print('--------')
+            slide = prs.slides[i]
+            inputVal = inputValue[i+1]
+            shapes = slide.shapes
+            self.text_on_shape(shapes,inputVal)
+        prs.save('result.pptx')
+    
+    def text_on_shape(self,shapes,inputVal):
+        # shapes : 한 슬라이드 안
+        for shape in shapes:
+            if shape.name=="name" or shape.name=="pos":
+                # shape 내 텍스트 프레임 선택하기 & 기존 값 삭제하기
+                text_frame = shape.text_frame
+                p = text_frame.paragraphs[0]
+                font_size = p.runs[0].font.size
+                # font_color = p.runs[0].font.color.type
+                text_frame.clear()
+                # 정렬 설정 : 중간정렬
+                p.alighnment = PP_ALIGN.CENTER   
+                run = p.add_run()
+                run.text = inputVal[0] if shape.name=="name" else inputVal[1]
+                font = run.font
+                font.size = font_size
+                # font.color.type = font_color
+                
+                
     def createBtn_clicked(self):
         # create 버튼 클릭시 이벤트
         # /팀이름/subject/ 로 폴더 생성
-        # label에 넣은 대로 ppt 생성
-        subject = self.subject.text()
-        self.subject.clear()
-        deptLabel = self.deptName.currentText()
-        QMessageBox.about(self,"message","/"+deptLabel+"/"+subject)
+        subject = self.subject.text()                           # 폴더 이름
+        deptLabel = self.deptName.currentText()                 # 부서명
+        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        inputValue = self.inputValue()                          # 입력값 받아옴
         
     def ping(self, ip):
         if self.connect_count>=6: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
