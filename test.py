@@ -31,12 +31,17 @@ class MyWindow(QMainWindow, form_class):
         self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
         self.connect_count=0 # 연결 시도 횟수 설정
         
+        self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+        self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+        
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
         
         self.timer = QTimer(self)
         self.timer.setInterval(6000)
         self.timer.timeout.connect(self.update_network)
         self.timer.start()
+        
+        
         
         
         
