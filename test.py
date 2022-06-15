@@ -158,11 +158,11 @@ class MyWindow(QMainWindow, form_class):
                 font.size = font_size
                 # font.color.type = font_color
     
-    def disableBtn(self, func):
-        def wrapper():
+    def disableBtn(func):
+        def wrapper(self):
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
             self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
-            func()
+            func(self)
         return wrapper            
                 
     def createBtn_clicked(self):
