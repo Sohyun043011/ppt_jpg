@@ -1,0 +1,1 @@
+pyinstaller -w --uac-admin ppt_jpg.py
