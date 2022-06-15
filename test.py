@@ -160,19 +160,23 @@ class MyWindow(QMainWindow, form_class):
     def update_network(self): # 스마트월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
         wall_ip="192.168.0.60" #스마트월 ip
         name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
-
+        self.onNameOpenClick.setDisabled(True)
+        self.onWallOpenClick.setDisabled(True)
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
             self.statusLabel.setStyleSheet("Color : Blue")
+            self.onWallOpenClick.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         elif self.ping(name_ip):
             self.statusLabel.setText('스마트명패 연결 성공')
             self.statusLabel.setStyleSheet("Color : Blue")
+            self.onNameOpenClick.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         else:
             self.statusLabel.setText('연결 없음')
+            self.statusLabel.setStyleSheet("Color : Red")
             
         
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
