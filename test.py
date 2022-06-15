@@ -29,6 +29,7 @@ class MyWindow(QMainWindow, form_class):
         self.setFixedSize(1600, 850) # 창 사이즈 고정
         self.setWindowTitle('화상회의실 관리 프로그램') # 프로그램 Title 설정
         self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
+        self.connect_count=0 # 연결 시도 횟수 설정
         
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
         
@@ -111,6 +112,10 @@ class MyWindow(QMainWindow, form_class):
         QMessageBox.about(self,"message","/"+deptLabel+"/"+subject)
         
     def ping(self, ip):
+        if self.connect_count>=6: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
+            self.timer.stop()
+            self.connect_count=0
+            return False
         try:
             print('다음으로 연결 중: http://'+ip)
             urllib.request.urlopen('http://'+ip, timeout=1)
@@ -124,19 +129,20 @@ class MyWindow(QMainWindow, form_class):
 
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
+            self.statusLabel.setStyleSheet("Color : Blue")
         elif self.ping(name_ip):
             self.statusLabel.setText('스마트명패 연결 성공')
+            self.statusLabel.setStyleSheet("Color : Blue")
         else:
             self.statusLabel.setText('연결 없음')
-    
-    
         
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
         os.startfile('enable.bat.lnk')
-        # self.timer.start()
+        self.timer.start()
         
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
         os.startfile('disable.bat.lnk')
+        self.timer.start()
     
     def onWallOpenClick(self):
         webbrowser.get(self.chrome_path).open("192.168.0.60")
