@@ -11,6 +11,7 @@ from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
 from PyQt5.QtCore import QTimer
 import urllib.request
 import webbrowser
+from comtypes import client
 
 dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage"
 
@@ -117,24 +118,15 @@ class MyWindow(QMainWindow, form_class):
             self.text_on_shape(shapes,inputVal)
         prs.save(directory+'\\'+subject+'.pptx')
         
-    def createBtn_clicked(self):
-        # create 버튼 클릭시 이벤트
-        # /팀이름/subject/ 로 폴더 생성
-        subject = self.subject.text()                           # 폴더 이름
-        deptLabel = self.deptName.currentText()                 # 부서명 
-        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-        inputValue = self.inputValue()                          # 입력값 받아옴
-        
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-            # 폴더 생성 후, ppt 생성
-            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값 
-        else: 
-            # 이미 있는 폴더인 경우, 이름 다시 설정.
-            QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
-        # label에 넣은 대로 ppt 생성
-        self.subject.clear()
-        
+    def makeJPG(self,directory,subject):
+        ppt = client.CreateObject('Powerpoint.Application')
+        ppt.Presentations.Open(directory+"\\"+subject+".pptx")
+        ppt.ActivePresentation.Export(directory, 'JPG')
+        ppt.ActivePresentation.Close()
+        ppt.Quit()
+        for i in range(13):
+            os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str(i+1) + '.jpg')
+    
     def inputValue(self):
         inputValue= {}
         for i in range(1,14):
@@ -175,7 +167,7 @@ class MyWindow(QMainWindow, form_class):
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
-        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
         inputValue = self.inputValue()     
         if not os.path.exists(directory):
             os.makedirs(directory)
