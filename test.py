@@ -139,7 +139,13 @@ class MyWindow(QMainWindow, form_class):
                 font = run.font
                 font.size = font_size
                 # font.color.type = font_color
-                
+    
+    def disableBtn(self, func):
+        def wrapper():
+            self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+            self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+            func()
+        return wrapper            
                 
     def createBtn_clicked(self):
         # create 버튼 클릭시 이벤트
@@ -184,21 +190,26 @@ class MyWindow(QMainWindow, form_class):
             self.statusLabel.setText('연결 없음')
             self.statusLabel.setStyleSheet("Color : Red")
             
-        
+    @disableBtn        
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
         os.startfile('enable.bat.lnk')
         self.timer.start()
-        
+
+    @disableBtn
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
         os.startfile('disable.bat.lnk')
         self.timer.start()
     
+    @disableBtn
     def onWallOpenClick(self):
         webbrowser.get(self.chrome_path).open("192.168.0.60")
     
+    @disableBtn
     def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
-        
+    
+    
+    
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     myWindow = MyWindow()
