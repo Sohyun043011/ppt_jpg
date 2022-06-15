@@ -145,7 +145,8 @@ class MyWindow(QMainWindow, form_class):
                 p = text_frame.paragraphs[0]
                 font_size = p.runs[0].font.size
                 # 색 변경이 안됨..............
-                # font_color = p.runs[0].font.color.type
+                font_color = p.runs[0].font.color
+                # print(font_color)
                 text_frame.clear()
                 # 정렬 설정 : 중간정렬
                 p.alighnment = PP_ALIGN.CENTER   
@@ -153,8 +154,8 @@ class MyWindow(QMainWindow, form_class):
                 run.text = inputVal[0] if shape.name=="name" else inputVal[1]
                 font = run.font
                 font.size = font_size
-                # font.color.type = font_color
-    
+                font.color.theme_color=font_color.theme_color
+                
     def disableBtn(func):
         def wrapper(self):
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
@@ -168,6 +169,7 @@ class MyWindow(QMainWindow, form_class):
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
         directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
         inputValue = self.inputValue()     
         if not os.path.exists(directory):
             os.makedirs(directory)
