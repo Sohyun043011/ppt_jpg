@@ -14,6 +14,9 @@ import urllib.request
 import webbrowser
 
 dataImage_default_path="C:\Server\Gachi\Qname\dataImage"
+# subject : 양식
+# 팀명 : 경영지원팀
+# path : dataImage_default + '\'+팀명 + '\
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
@@ -125,7 +128,7 @@ class MyWindow(QMainWindow, form_class):
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
-        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
         inputValue = self.inputValue()                          # 입력값 받아옴
         
         if not os.path.exists(directory):
