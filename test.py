@@ -1,6 +1,7 @@
-from PyQt5 import uic
+from PyQt5 import uic,QtGui
 import os
 import sys
+import time
 from PyQt5.QtWidgets import *
 from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
@@ -10,13 +11,12 @@ from comtypes import client
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QPixmap , QIcon
 from PyQt5.QtCore import Qt, QTimer
+import socket
+import subprocess
+import threading
 import urllib.request
+from urllib.parse import urljoin
 import webbrowser
-
-dataImage_default_path="C:\Server\Gachi\Qname\dataImage"
-# subject : 양식
-# 팀명 : 경영지원팀
-# path : dataImage_default + '\'+팀명 + '\
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
@@ -28,6 +28,10 @@ class MyWindow(QMainWindow, form_class):
         self.setFixedSize(1600, 850) # 창 사이즈 고정
         self.setWindowTitle('화상회의실 관리 프로그램') # 프로그램 Title 설정
         self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
+        self.connect_count=0 # 연결 시도 횟수 설정
+        
+        self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
+        self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
         
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
         
@@ -35,6 +39,8 @@ class MyWindow(QMainWindow, form_class):
         self.timer.setInterval(6000)
         self.timer.timeout.connect(self.update_network)
         self.timer.start()
+        
+        
         
         
         
@@ -108,34 +114,25 @@ class MyWindow(QMainWindow, form_class):
         #placeholder : Title, Center Title, Subtitle, Body etc
     
         for i in range(13):
+            print('--------')
             slide = prs.slides[i]
             inputVal = inputValue[i+1]
             shapes = slide.shapes
             self.text_on_shape(shapes,inputVal)
         prs.save(directory+'\\'+subject+'.pptx')
-     
-    def makeJPG(self,directory,subject):
-        ppt = client.CreateObject('Powerpoint.Application')
-        ppt.Presentations.Open(directory+"\\"+subject+".pptx")
-        ppt.ActivePresentation.Export(directory, 'JPG')
-        ppt.ActivePresentation.Close()
-        ppt.Quit()
-        for i in range(13):
-            os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str(i+1) + '.jpg')
-    
+        
     def createBtn_clicked(self):
         # create 버튼 클릭시 이벤트
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
-        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
         inputValue = self.inputValue()                          # 입력값 받아옴
         
         if not os.path.exists(directory):
             os.makedirs(directory)
             # 폴더 생성 후, ppt 생성
-            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
-            self.makeJPG(directory,subject) 
+            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값 
         else: 
             # 이미 있는 폴더인 경우, 이름 다시 설정.
             QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
@@ -177,6 +174,11 @@ class MyWindow(QMainWindow, form_class):
         inputValue = self.inputValue()                          # 입력값 받아옴
         
     def ping(self, ip):
+        if self.connect_count>=6: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
+            self.timer.stop()
+            self.connect_count=0
+            return False
+        self.connect_count+=1
         try:
             print('다음으로 연결 중: http://'+ip)
             urllib.request.urlopen('http://'+ip, timeout=1)
@@ -187,11 +189,21 @@ class MyWindow(QMainWindow, form_class):
     def update_network(self): # 스마트월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
         wall_ip="192.168.0.60" #스마트월 ip
         name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
-
+        self.nameLinkBtn.setDisabled(True)
+        self.wallLinkBtn.setDisabled(True)
+        
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
+            self.statusLabel.setStyleSheet("Color : Blue")
+            self.wallLinkBtn.setDisabled(False)
+            self.timer.stop()
+            self.connect_count=0
         elif self.ping(name_ip):
             self.statusLabel.setText('스마트명패 연결 성공')
+            self.statusLabel.setStyleSheet("Color : Blue")
+            self.nameLinkBtn.setDisabled(False)
+            self.timer.stop()
+            self.connect_count=0
         else:
             self.statusLabel.setText('연결 없음')
             self.statusLabel.setStyleSheet("Color : Red")
@@ -204,6 +216,7 @@ class MyWindow(QMainWindow, form_class):
     @disableBtn
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
         os.startfile('disable.bat.lnk')
+        self.timer.start()
     
     def onWallOpenClick(self):
         webbrowser.get(self.chrome_path).open("192.168.0.60")
