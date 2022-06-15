@@ -149,6 +149,7 @@ class MyWindow(QMainWindow, form_class):
             self.timer.stop()
             self.connect_count=0
             return False
+        self.connect_count+=1
         try:
             print('다음으로 연결 중: http://'+ip)
             urllib.request.urlopen('http://'+ip, timeout=1)
@@ -163,11 +164,16 @@ class MyWindow(QMainWindow, form_class):
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
             self.statusLabel.setStyleSheet("Color : Blue")
+            self.timer.stop()
+            self.connect_count=0
         elif self.ping(name_ip):
             self.statusLabel.setText('스마트명패 연결 성공')
             self.statusLabel.setStyleSheet("Color : Blue")
+            self.timer.stop()
+            self.connect_count=0
         else:
             self.statusLabel.setText('연결 없음')
+            
         
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
         os.startfile('enable.bat.lnk')
