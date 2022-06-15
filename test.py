@@ -1,22 +1,18 @@
-from PyQt5 import uic,QtGui
+from PyQt5 import uic
 import os
 import sys
-import time
 from PyQt5.QtWidgets import *
 from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 from pptx.util import Pt
-from comtypes import client
 from PyQt5.QtWidgets import QWidget, QApplication
-from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QPixmap , QIcon
-from PyQt5.QtCore import Qt, QTimer
-import socket
-import subprocess
-import threading
+from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
+from PyQt5.QtCore import QTimer
 import urllib.request
-from urllib.parse import urljoin
 import webbrowser
+
+dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage"
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
@@ -125,8 +121,8 @@ class MyWindow(QMainWindow, form_class):
         # create 버튼 클릭시 이벤트
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
-        deptLabel = self.deptName.currentText()                 # 부서명
-        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        deptLabel = self.deptName.currentText()                 # 부서명 
+        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
         inputValue = self.inputValue()                          # 입력값 받아옴
         
         if not os.path.exists(directory):
@@ -139,6 +135,15 @@ class MyWindow(QMainWindow, form_class):
         # label에 넣은 대로 ppt 생성
         self.subject.clear()
         
+    def inputValue(self):
+        inputValue= {}
+        for i in range(1,14):
+            nameChild = self.findChild(QLineEdit,"InputName_%d" % (i)).text()
+            namePos = self.findChild(QLineEdit,"InputPos_%d" % (i)).text()
+            inputValue[i]=[nameChild,namePos]
+        return inputValue
+    
+    
     def text_on_shape(self,shapes,inputVal):
         # shapes : 한 슬라이드 안
         for shape in shapes:
@@ -171,7 +176,16 @@ class MyWindow(QMainWindow, form_class):
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
         directory = os.getcwd()+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-        inputValue = self.inputValue()                          # 입력값 받아옴
+        inputValue = self.inputValue()     
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+            # 폴더 생성 후, ppt 생성
+            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
+            self.makeJPG(directory,subject) 
+        else: 
+            # 이미 있는 폴더인 경우, 이름 다시 설정.
+            QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
+        self.subject.clear()
         
     def ping(self, ip):
         if self.connect_count>=6: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
