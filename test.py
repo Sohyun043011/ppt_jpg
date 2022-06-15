@@ -34,7 +34,7 @@ class MyWindow(QMainWindow, form_class):
         
         self.timer = QTimer(self)
         self.timer.setInterval(6000)
-        self.timer.timeout.connect(self.ping)
+        self.timer.timeout.connect(self.update_network)
         self.timer.start()
         
         
@@ -109,16 +109,15 @@ class MyWindow(QMainWindow, form_class):
         self.subject.clear()
         deptLabel = self.deptName.currentText()
         QMessageBox.about(self,"message","/"+deptLabel+"/"+subject)
-    
-    def ping(ip):
+        
+    def ping(self, ip):
         try:
-            print('다음으로 연결 중:')
-            print(urljoin('http://',str(ip)))
-            urllib.request.urlopen(urljoin('http://',str(ip)), timeout=1)
+            print('다음으로 연결 중: https://'+ip)
+            urllib.request.urlopen('https://'+ip, timeout=1)
             return True
         except urllib.request.URLError as err:
             return False
-        
+    
     def update_network(self): # 스마트월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
         wall_ip="192.168.0.60" #스마트월 ip
         name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
@@ -129,7 +128,9 @@ class MyWindow(QMainWindow, form_class):
             self.statusLabel.setText('스마트명패 연결 성공')
         else:
             self.statusLabel.setText('연결 없음')
-            
+    
+    
+        
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
         os.startfile('enable.bat.lnk')
         # self.timer.start()
