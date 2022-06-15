@@ -736,9 +736,9 @@
     <widget class="QLineEdit" name="InputName_1">
      <property name="geometry">
       <rect>
-       <x>70</x>
+       <x>105</x>
        <y>540</y>
-       <width>111</width>
+       <width>86</width>
        <height>20</height>
       </rect>
      </property>
@@ -790,7 +790,7 @@
       <rect>
        <x>560</x>
        <y>540</y>
-       <width>51</width>
+       <width>81</width>
        <height>21</height>
       </rect>
      </property>
@@ -868,7 +868,7 @@
       <rect>
        <x>23</x>
        <y>540</y>
-       <width>41</width>
+       <width>81</width>
        <height>20</height>
       </rect>
      </property>
