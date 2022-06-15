@@ -9,13 +9,13 @@ from pptx.dml.color import RGBColor
 from pptx.util import Pt
 from comtypes import client
 from PyQt5.QtWidgets import QWidget, QApplication
-from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QPixmap
+from PyQt5.QtGui import QPainter, QPen, QColor, QBrush, QPixmap , QIcon
 from PyQt5.QtCore import Qt
 import socket
 import subprocess
 import threading
 
-form_class = uic.loadUiType("ppt_to_jpg.ui")[0]
+form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
 class MyWindow(QMainWindow, form_class):
     def __init__(self):
@@ -23,9 +23,12 @@ class MyWindow(QMainWindow, form_class):
         self.setupUi(self)
         self.initSetting()
         self.createBtn.clicked.connect(self.createBtn_clicked)
+        self.setFixedSize(1600, 850) # 창 사이즈 고정
+        self.setWindowTitle('화상회의실 관리 프로그램') # 프로그램 Title 설정
+        self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
         
     def initSetting(self):
-        # 서식 이미지 파일 
+        # 서식 이미지 파일
         pixmap1 = QPixmap("./양식1.jpg")
         pixmap2 = QPixmap("./양식2.jpg")
         pixmap3 = QPixmap("./양식3.jpg")
