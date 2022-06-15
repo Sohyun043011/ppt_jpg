@@ -112,8 +112,8 @@ class MyWindow(QMainWindow, form_class):
         
     def ping(self, ip):
         try:
-            print('다음으로 연결 중: https://'+ip)
-            urllib.request.urlopen('https://'+ip, timeout=1)
+            print('다음으로 연결 중: http://'+ip)
+            urllib.request.urlopen('http://'+ip, timeout=1)
             return True
         except urllib.request.URLError as err:
             return False
