@@ -1,14 +1,14 @@
-QPushButton{
+#createBtn, #deleteBtn, #wallActivBtn, #nameActivBtn, #wallLinkBtn, #nameLinkBtn{
 	color: black;
 	border: 1px solid black;
 	border-radius: 5px;
 }
 
-QPushButton:enabled{
+#createBtn:enabled, #deleteBtn:enabled, #wallActivBtn:enabled ,#nameActivBtn:enabled, #wallLinkBtn:enabled, #nameLinkBtn:enabled{
 	color: blue;
 }
 
-QPushButton:disabled{
+#createBtn:disabled, #deleteBtn:disabled, #wallActivBtn:disabled ,#nameActivBtn:disabled, #wallLinkBtn:disabled, #nameLinkBtn:disabled{
     background-color: rgb(204,204,204);
 	color: red;
 }
