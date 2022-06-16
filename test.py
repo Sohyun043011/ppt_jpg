@@ -59,8 +59,8 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_1.toggled.connect(self.onClicked)
         self.radioBtn_2.toggled.connect(self.onClicked)
         self.radioBtn_3.toggled.connect(self.onClicked)
-        self.radioBtn_4.toggled.connect(self.onClicked)
-        self.radioBtn_1.setChecked(True)
+        # self.radioBtn_1.setChecked(True)
+        self.selectForm.clicked.connect(self.onClickSelect)
         
         self.createBtn.clicked.connect(self.createBtn_clicked)
         self.deleteBtn.clicked.connect(self.deleteBtn_clicked)
@@ -90,8 +90,8 @@ class MyWindow(QMainWindow, form_class):
             # print('양식3 select'+pptx_fpath)
         else:
             # pptx_fpath =  os.path.dirname(os.path.abspath('양식4.pptx'))+'\\양식4.pptx'
-            ex_flag = '양식4'
-            print('양식4 select')
+            ex_flag = '그 외'
+            print('그 외 select')
             
     def paintEvent(self,event):
         qp = QPainter()
@@ -142,6 +142,15 @@ class MyWindow(QMainWindow, form_class):
         inputValue[15]=['','']
         return inputValue
     
+    def onClickSelect(self):
+        # QMessageBox.about(self,"message",'select vox')
+        # 서식 찾기 -> 파일 탐색기 열기-> 파일 선택-> 그 파일 경로 : pptx_fpath로 설정
+        # select_folder = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
+        global pptx_fpath
+        select_file = QFileDialog.getOpenFileName(self) 
+        print(select_file[0])
+        pptx_fpath = select_file[0]
+        self.findFormLabel.setText("선택 서식 : \n"+pptx_fpath)
     
     def text_on_shape(self,shapes,inputVal):
         # shapes : 한 슬라이드 안
@@ -181,9 +190,9 @@ class MyWindow(QMainWindow, form_class):
                         # RGB인 경우
                         # print(int(f'{font_color.rgb}',16))
                         # print(int(str(font_color.rgb)[0:2],16))
-                        font.color.brightness = font_color.brightness
+                        
                         font.color.rgb = RGBColor(int(str(font_color.rgb)[0:2],16),int(str(font_color.rgb)[2:4],16),int(str(font_color.rgb)[4:6],16))
-                       
+                        font.color.brightness = font_color.brightness
                 else:
                     # 블랙인 경우,
                     font.color.rgb = RGBColor(0,0,0)
@@ -200,8 +209,8 @@ class MyWindow(QMainWindow, form_class):
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
         deptLabel = self.deptName.currentText()                 # 부서명
-        directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-        # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+        # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
         inputValue = self.inputValue()     
         if not os.path.exists(directory):
             os.makedirs(directory)
