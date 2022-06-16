@@ -154,7 +154,9 @@ class MyWindow(QMainWindow, form_class):
         select_file = QFileDialog.getOpenFileName(self) 
         print(select_file[0])
         pptx_fpath = select_file[0]
-        self.findFormLabel.setText("선택 서식 : \n"+pptx_fpath)
+        if pptx_fpath=='':
+            QMessageBox.about(self,"message","파일이 선택되지 않았습니다.다시 선택해주세요.")
+        else: self.findFormLabel.setText("선택 서식 : \n"+pptx_fpath)
     
     def text_on_shape(self,shapes,inputVal):
         # shapes : 한 슬라이드 안
@@ -212,19 +214,23 @@ class MyWindow(QMainWindow, form_class):
         # create 버튼 클릭시 이벤트
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text()                           # 폴더 이름
-        deptLabel = self.deptName.currentText()                 # 부서명
-        # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-        directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
-        inputValue = self.inputValue()     
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-            # 폴더 생성 후, ppt 생성
-            self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
-            self.makeJPG(directory,subject) 
-        else: 
-            # 이미 있는 폴더인 경우, 이름 다시 설정.
-            QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
-        self.subject.clear()
+        if subject=='':
+            # 공백인 경우 입력하게 하기
+            QMessageBox.about(self,"message","폴더명을 입력해주세요.")
+        else:
+            deptLabel = self.deptName.currentText()                 # 부서명
+            # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            inputValue = self.inputValue()     
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+                # 폴더 생성 후, ppt 생성
+                self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
+                self.makeJPG(directory,subject) 
+            else: 
+                # 이미 있는 폴더인 경우, 이름 다시 설정.
+                QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
+            self.subject.clear()
         
     def deleteBtn_clicked(self):
         # create 버튼 클릭시 이벤트
