@@ -185,17 +185,29 @@ class MyWindow(QMainWindow, form_class):
     def deleteBtn_clicked(self):
         # create 버튼 클릭시 이벤트
         folderPath = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
+        print(folderPath.split('/')[-2])
         
-        if os.path.exists(folderPath):
+        
+        if os.path.exists(folderPath): # 폴더가 존재할 때
+            # 폴더 상위폴더가 dataImage일 경우(부서 카테고리를 지우려고 하는 경우)
+            if folderPath.split('/')[-2]=='dataImage':
+                QMessageBox.warning(self, '알림', '부서 카테고리는 삭제할 수 없습니다. 다시 시도해주세요.')
+                return
+            if '/'.join(folderPath.split('/')[:-2])!='C:/Server/Gachi/Qname/dataImage':
+                QMessageBox.warning(self, '알림', '다른 디렉토리에 존재하는 파일은 삭제할 수 없습니다. 다시 시도해주세요.')
+                return
+            
             buttonReply=QMessageBox.information(self,'알림','정말로 해당 파일을 삭제하시겠습니까?', QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
             if buttonReply==QMessageBox.Yes:
                 shutil.rmtree(folderPath) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
                 QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
+        elif folderPath=='':
+            return
         else:
-            QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
+            QMessageBox.information(self,'알림','폴더가 존재하지 않습니다.')
         
     def ping(self, ip):
-        if self.connect_count>=4: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
+        if self.connect_count>=4: #시도 횟수 2번 이상이면 0번으로 갱신 후 stop (한번 시도마다 2개의 ip에 대해 조사)
             self.timer.stop()
             self.connect_count=0
             return False
@@ -231,12 +243,14 @@ class MyWindow(QMainWindow, form_class):
             
     @disableBtn        
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
+        QMessageBox.information(self,'알림','스마트명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         os.startfile('enable.bat.lnk')
         self.timer.start()
 
     @disableBtn
     def onWallActivClick(self): # 스마트월 활성화 버튼 눌렀을 때 onclick function
         os.startfile('disable.bat.lnk')
+        QMessageBox.information(self,'알림','스마트월이 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         self.timer.start()
     
     def onWallOpenClick(self):
