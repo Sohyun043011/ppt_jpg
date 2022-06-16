@@ -1,12 +1,12 @@
 from PyQt5 import uic
-import os
+import os, shutil
 import sys
 from PyQt5.QtWidgets import *
 from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 from pptx.util import Pt
-from PyQt5.QtWidgets import QWidget, QApplication
+from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
 from PyQt5.QtCore import QTimer
 import urllib.request
@@ -62,6 +62,7 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_1.setChecked(True)
         
         self.createBtn.clicked.connect(self.createBtn_clicked)
+        self.deleteBtn.clicked.connect(self.deleteBtn_clicked)
         
         # 활성화 버튼 설정
         self.wallLinkBtn.clicked.connect(self.onWallOpenClick)
@@ -181,8 +182,20 @@ class MyWindow(QMainWindow, form_class):
             QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
         self.subject.clear()
         
+    def deleteBtn_clicked(self):
+        # create 버튼 클릭시 이벤트
+        folderPath = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
+        
+        if os.path.exists(folderPath):
+            buttonReply=QMessageBox.information(self,'알림','정말로 해당 파일을 삭제하시겠습니까?', QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+            if buttonReply==QMessageBox.Yes:
+                shutil.rmtree(folderPath) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
+                QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
+        else:
+            QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
+        
     def ping(self, ip):
-        if self.connect_count>=6: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
+        if self.connect_count>=4: #시도 횟수 6번 이상이면 0번으로 갱신 후 stop
             self.timer.stop()
             self.connect_count=0
             return False
@@ -235,7 +248,10 @@ class MyWindow(QMainWindow, form_class):
     
     
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    myWindow = MyWindow()
-    myWindow.show()
-    app.exec_()
+    try:
+        app = QApplication(sys.argv)
+        myWindow = MyWindow()
+        myWindow.show()
+        app.exec_()
+    except Exception as e:
+        print(e)
