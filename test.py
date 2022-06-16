@@ -12,6 +12,7 @@ from PyQt5.QtCore import QTimer
 import urllib.request
 import webbrowser
 from comtypes import client
+import shutil
 
 dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage"
 
@@ -77,15 +78,15 @@ class MyWindow(QMainWindow, form_class):
         if radioBtn.text() == '서식1':
             pptx_fpath = os.path.dirname(os.path.abspath('양식1.pptx'))+'\\양식1.pptx'
             ex_flag = '양식1'
-            print('양식1 select' + pptx_fpath)
+            # print('양식1 select' + pptx_fpath)
         elif radioBtn.text() == '서식2':
             pptx_fpath = os.path.dirname(os.path.abspath('양식2.pptx'))+'\\양식2.pptx'
             ex_flag = '양식2'
-            print('양식2 select'+pptx_fpath)
+            # print('양식2 select'+pptx_fpath)
         elif radioBtn.text() == '서식3':
             pptx_fpath =  os.path.dirname(os.path.abspath('양식3.pptx'))+'\\양식3.pptx'
             ex_flag = '양식3'
-            print('양식3 select'+pptx_fpath)
+            # print('양식3 select'+pptx_fpath)
         else:
             # pptx_fpath =  os.path.dirname(os.path.abspath('양식4.pptx'))+'\\양식4.pptx'
             ex_flag = '양식4'
@@ -107,11 +108,11 @@ class MyWindow(QMainWindow, form_class):
         
     def makePPT(self,directory,subject,pptx_fpath,inputValue):
         prs = Presentation(pptx_fpath)                  # 양식 선택시 불러옴
-        #슬라이드 1~13 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌
+        #슬라이드 1~15 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌(14,15는 빈 슬라이드)
         #placeholder : Title, Center Title, Subtitle, Body etc
     
-        for i in range(13):
-            print('--------')
+
+        for i in range(15):
             slide = prs.slides[i]
             inputVal = inputValue[i+1]
             shapes = slide.shapes
@@ -124,15 +125,20 @@ class MyWindow(QMainWindow, form_class):
         ppt.ActivePresentation.Export(directory, 'JPG')
         ppt.ActivePresentation.Close()
         ppt.Quit()
-        for i in range(13):
-            os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str(i+1) + '.jpg')
-    
+        
+        # 슬라이드1~15까지 존재.->1.jpg, 2.jpg,...15.jpg 이거를 복사
+        for i in range(15):
+            os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str((i+1)) + '.jpg')
+            shutil.copyfile(directory+"\\"+str((i+1)) + '.jpg',directory+"\\"+str(15+(i+1)) + '.jpg')
+        
     def inputValue(self):
         inputValue= {}
         for i in range(1,14):
             nameChild = self.findChild(QLineEdit,"InputName_%d" % (i)).text()
             namePos = self.findChild(QLineEdit,"InputPos_%d" % (i)).text()
             inputValue[i]=[nameChild,namePos]
+        inputValue[14]=['','']
+        inputValue[15]=['','']
         return inputValue
     
     
@@ -143,19 +149,44 @@ class MyWindow(QMainWindow, form_class):
                 # shape 내 텍스트 프레임 선택하기 & 기존 값 삭제하기
                 text_frame = shape.text_frame
                 p = text_frame.paragraphs[0]
-                font_size = p.runs[0].font.size
-                # 색 변경이 안됨..............
+                font_size = p.runs[0].font.size.pt
                 font_color = p.runs[0].font.color
+                font_bold = p.runs[0].font.bold
+                font_name = p.runs[0].font.name
+                # font_brightness =  p.runs[0].font.brightness
                 # print(font_color)
+                # print(font_color.brightness)
                 text_frame.clear()
                 # 정렬 설정 : 중간정렬
                 p.alighnment = PP_ALIGN.CENTER   
                 run = p.add_run()
                 run.text = inputVal[0] if shape.name=="name" else inputVal[1]
-                font = run.font
-                font.size = font_size
-                font.color.theme_color=font_color.theme_color
+                font = run.font 
+                font.name = font_name
                 
+                font.size = Pt(font_size)
+                if font_bold==True:
+                    # bold 설정 되어있다면
+                    font.bold = font_bold
+                if font_color.type!=None:
+                    # 블랙아닌 경우
+                    # SCHEME인 경우
+                    
+                    if font_color.theme_color!=0:
+                        font.color.theme_color=font_color.theme_color
+                        font.color.brightness = font_color.brightness
+                        
+                    else:
+                        # RGB인 경우
+                        # print(int(f'{font_color.rgb}',16))
+                        # print(int(str(font_color.rgb)[0:2],16))
+                        font.color.brightness = font_color.brightness
+                        font.color.rgb = RGBColor(int(str(font_color.rgb)[0:2],16),int(str(font_color.rgb)[2:4],16),int(str(font_color.rgb)[4:6],16))
+                       
+                else:
+                    # 블랙인 경우,
+                    font.color.rgb = RGBColor(0,0,0)
+                    
     def disableBtn(func):
         def wrapper(self):
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
