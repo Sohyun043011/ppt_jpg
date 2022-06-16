@@ -1092,19 +1092,17 @@
     <property name="minimumSize">
      <size>
       <width>320</width>
-      <height>200</height>
+      <height>300</height>
      </size>
     </property>
     <property name="styleSheet">
-     <string notr="true">font: 11pt &quot;맑은 고딕&quot;;</string>
+     <string notr="true">font: 10pt &quot;맑은 고딕&quot;;</string>
     </property>
     <property name="frameShape">
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
      <string>★ 스마트월 또는 스마트명패를 이용하기 전 아래 상태 표시창에서 연결 상태 확인 후 해당 서비스로 연결되어있지 않은 상태라면 활성화 버튼을 눌러주시기 바랍니다.
-
-★ 스마트명패를 사용하기 위해서는 랜케이블을 연결해주셔야 합니다.
 
 ★ 활성화 버튼을 누른 후에도 접속이 되지 않는다면, 한번 더 활성화 버튼을 눌러주시거나, 프로그램을 종료 후 다시 실행해주시기 바랍니다.</string>
     </property>
