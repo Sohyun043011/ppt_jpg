@@ -6,7 +6,6 @@ from pptx import Presentation
 from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 from pptx.util import Pt
-from PyQt5.QtWidgets import QWidget, QApplication, QFileDialog, QMessageBox
 from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
 from PyQt5.QtCore import QTimer
 import urllib.request
@@ -52,7 +51,7 @@ class MyWindow(QMainWindow, form_class):
         self.image3.setPixmap(QPixmap(pixmap3))
         
         self.statusLabel.setText('연결 없음')
-        self.statusLabel.setStyleSheet("Color : Red")
+        self.statusLabel.setStyleSheet("color : red")
         
         # 서식 버튼 설정
         self.radioBtn_1.toggled.connect(self.onClicked)
@@ -70,6 +69,11 @@ class MyWindow(QMainWindow, form_class):
         self.nameLinkBtn.clicked.connect(self.onNameOpenClick)
         self.nameActivBtn.clicked.connect(self.onNameActivClick)
         
+        self.set_style()
+    
+    def set_style(self):
+        with open("update_style", 'r') as f:
+            self.setStyleSheet(f.read())    
         
     def onClicked(self):
         global pptx_fpath
@@ -227,19 +231,19 @@ class MyWindow(QMainWindow, form_class):
         
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
-            self.statusLabel.setStyleSheet("Color : Blue")
+            self.statusLabel.setStyleSheet("Ccolor : blue;")
             self.wallLinkBtn.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         elif self.ping(name_ip):
             self.statusLabel.setText('스마트명패 연결 성공')
-            self.statusLabel.setStyleSheet("Color : Blue")
+            self.statusLabel.setStyleSheet("color : blue;")
             self.nameLinkBtn.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         else:
             self.statusLabel.setText('연결 없음')
-            self.statusLabel.setStyleSheet("Color : Red")
+            self.statusLabel.setStyleSheet("color : red;")
             
     @disableBtn        
     def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function

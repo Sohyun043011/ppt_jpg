@@ -1,0 +1,23 @@
+QPushButton{
+	color: black;
+	border: 1px solid black;
+	border-radius: 5px;
+}
+
+QPushButton:enabled{
+	color: blue;
+}
+
+QPushButton:disabled{
+    background-color: rgb(204,204,204);
+	color: red;
+}
+
+#menualArea{
+    padding:10px;
+}
+
+#statusLabel{
+	border: 1px solid black;
+	border-radius: 5px;
+}
