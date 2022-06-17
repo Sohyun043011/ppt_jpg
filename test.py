@@ -64,9 +64,9 @@ class MyWindow(QMainWindow, form_class):
         self.selectForm_2.clicked.connect(self.onClickSelect)
         
         self.createBtn.clicked.connect(self.createBtn_clicked)
-        self.createBtn_3.clicked.connect(self.createBtn_clicked)
+        self.createBtn_2.clicked.connect(self.createBtn_clicked)
         self.deleteBtn.clicked.connect(self.deleteBtn_clicked)
-        self.deleteBtn_3.clicked.connect(self.deleteBtn_clicked)
+        self.deleteBtn_2.clicked.connect(self.deleteBtn_clicked)
         
         # 활성화 버튼 설정
         self.wallLinkBtn.clicked.connect(self.onWallOpenClick)
@@ -167,7 +167,6 @@ class MyWindow(QMainWindow, form_class):
         # select_folder = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
         global pptx_fpath
         select_file = QFileDialog.getOpenFileName(self) 
-        print(select_file[0])
         pptx_fpath = select_file[0]
         if pptx_fpath=='':
             QMessageBox.about(self,"message","파일이 선택되지 않았습니다.다시 선택해주세요.")
@@ -222,7 +221,6 @@ class MyWindow(QMainWindow, form_class):
                 # shape 내 텍스트 프레임 선택하기 & 기존 값 삭제하기
                 text_frame = shape.text_frame
                 p = text_frame.paragraphs[0]
-                print(p.runs[0])
                 font_size = p.runs[0].font.size.pt
                 font_color = p.runs[0].font.color
                 font_bold = p.runs[0].font.bold
@@ -283,12 +281,12 @@ class MyWindow(QMainWindow, form_class):
         currentIndex = self.LayoutTab.currentIndex()
         
         # /팀이름/subject/ 로 폴더 생성
-        subject = self.subject.text() if currentIndex==0 else self.subject_3.text() # 폴더 이름
+        subject = self.subject.text() if currentIndex==0 else self.subject_2.text() # 폴더 이름
         if subject=='':
             # 공백인 경우 입력하게 하기
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
-            deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_3.currentText()                # 부서명
+            deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()                # 부서명
             # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
             directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             inputValue = self.inputValue()     
@@ -301,30 +299,9 @@ class MyWindow(QMainWindow, form_class):
                 # 이미 있는 폴더인 경우, 이름 다시 설정.
                 QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
             self.subject.clear()
-            self.subject_3.clear()
+            self.subject_2.clear()
             self.findFormLabel.clear()
         
-    def createBtn3_clicked(self):
-        # Layout2의 createBtn
-        subject = self.subject_3.text()
-        if subject=='':
-            # 공백인 경우 입력하게 하기
-            QMessageBox.about(self,"message","폴더명을 입력해주세요.")
-        else:
-            deptLabel = self.deptName_3.currentText()                 # 부서명
-            # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
-            inputValue = self.inputValue2()     
-            if not os.path.exists(directory):
-                os.makedirs(directory)
-                # 폴더 생성 후, ppt 생성
-                self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
-                self.makeJPG(directory,subject) 
-            else: 
-                # 이미 있는 폴더인 경우, 이름 다시 설정.
-                QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
-            self.subject_3.clear()
-            self.findFormLabel.clear()
     
     def deleteBtn_clicked(self):
         # create 버튼 클릭시 이벤트

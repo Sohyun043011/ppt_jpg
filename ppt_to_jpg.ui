@@ -1177,7 +1177,7 @@
         <height>177</height>
        </rect>
       </property>
-      <layout class="QFormLayout" name="createLayout_3">
+      <layout class="QFormLayout" name="createLayout_2">
        <property name="labelAlignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
        </property>
@@ -1188,7 +1188,7 @@
         <number>15</number>
        </property>
        <item row="0" column="0">
-        <widget class="QLabel" name="subjectLabel_3">
+        <widget class="QLabel" name="subjectLabel_2">
          <property name="font">
           <font>
            <family>맑은 고딕</family>
@@ -1201,10 +1201,10 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLineEdit" name="subject_3"/>
+        <widget class="QLineEdit" name="subject_2"/>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="deptLabel_3">
+        <widget class="QLabel" name="deptLabel_2">
          <property name="font">
           <font>
            <family>맑은 고딕</family>
@@ -1217,7 +1217,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QComboBox" name="deptName_3">
+        <widget class="QComboBox" name="deptName_2">
          <item>
           <property name="text">
            <string>전략기획팀</string>
@@ -1311,7 +1311,7 @@
         </widget>
        </item>
        <item row="4" column="0" colspan="2">
-        <widget class="QPushButton" name="createBtn_3">
+        <widget class="QPushButton" name="createBtn_2">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -1324,7 +1324,7 @@
         </widget>
        </item>
        <item row="5" column="0" colspan="2">
-        <widget class="QPushButton" name="deleteBtn_3">
+        <widget class="QPushButton" name="deleteBtn_2">
          <property name="minimumSize">
           <size>
            <width>0</width>
@@ -2770,10 +2770,10 @@
   <tabstop>InputPos_14_L</tabstop>
   <tabstop>InputName_14_R</tabstop>
   <tabstop>InputPos_14_R</tabstop>
-  <tabstop>deptName_3</tabstop>
-  <tabstop>subject_3</tabstop>
-  <tabstop>createBtn_3</tabstop>
-  <tabstop>deleteBtn_3</tabstop>
+  <tabstop>deptName_2</tabstop>
+  <tabstop>subject_2</tabstop>
+  <tabstop>createBtn_2</tabstop>
+  <tabstop>deleteBtn_2</tabstop>
  </tabstops>
  <resources/>
  <connections/>
