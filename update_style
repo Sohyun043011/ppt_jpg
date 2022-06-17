@@ -1,14 +1,16 @@
-#createBtn, #deleteBtn, #wallActivBtn, #nameActivBtn, #wallLinkBtn, #nameLinkBtn{
+#createBtn, #deleteBtn, #wallActivBtn, #nameActivBtn, #wallLinkBtn, #nameLinkBtn, #createBtn_3, #deleteBtn_3{
 	color: black;
 	border: 1px solid black;
 	border-radius: 5px;
 }
 
-#createBtn:enabled, #deleteBtn:enabled, #wallActivBtn:enabled ,#nameActivBtn:enabled, #wallLinkBtn:enabled, #nameLinkBtn:enabled{
+#createBtn:enabled, #deleteBtn:enabled, #wallActivBtn:enabled ,#nameActivBtn:enabled, #wallLinkBtn:enabled, #nameLinkBtn:enabled, #createBtn_3:enabled,
+#deleteBtn_3:enabled{
 	color: blue;
 }
 
-#createBtn:disabled, #deleteBtn:disabled, #wallActivBtn:disabled ,#nameActivBtn:disabled, #wallLinkBtn:disabled, #nameLinkBtn:disabled{
+#createBtn:disabled, #deleteBtn:disabled, #wallActivBtn:disabled ,#nameActivBtn:disabled, #wallLinkBtn:disabled, #nameLinkBtn:disabled, 
+#createBtn_3:disabled , #deleteBtn_3:disabled{
     background-color: rgb(204,204,204);
 	color: red;
 }
@@ -20,4 +22,8 @@
 #statusLabel{
 	border: 1px solid black;
 	border-radius: 5px;
+}
+QTabWidget::pane {
+    background: transparent;
+    border:0;
 }

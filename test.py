@@ -37,7 +37,8 @@ class MyWindow(QMainWindow, form_class):
         self.timer.timeout.connect(self.update_network)
         self.timer.start()
         
-        
+        self.LayoutTab.setCurrentIndex(0)
+       
         
         
         
@@ -58,17 +59,21 @@ class MyWindow(QMainWindow, form_class):
         self.radioBtn_1.toggled.connect(self.onClicked)
         self.radioBtn_2.toggled.connect(self.onClicked)
         self.radioBtn_3.toggled.connect(self.onClicked)
-        # self.radioBtn_1.setChecked(True)
+        self.radioBtn_1.setChecked(True)
         self.selectForm.clicked.connect(self.onClickSelect)
+        self.selectForm_2.clicked.connect(self.onClickSelect)
         
         self.createBtn.clicked.connect(self.createBtn_clicked)
+        self.createBtn_3.clicked.connect(self.createBtn_clicked)
         self.deleteBtn.clicked.connect(self.deleteBtn_clicked)
+        self.deleteBtn_3.clicked.connect(self.deleteBtn_clicked)
         
         # 활성화 버튼 설정
         self.wallLinkBtn.clicked.connect(self.onWallOpenClick)
         self.wallActivBtn.clicked.connect(self.onWallActivClick)
         self.nameLinkBtn.clicked.connect(self.onNameOpenClick)
         self.nameActivBtn.clicked.connect(self.onNameActivClick)
+        
         
         self.set_style()
     
@@ -107,15 +112,16 @@ class MyWindow(QMainWindow, form_class):
     def drawRectangles(self,qp):
         qp.setBrush(QColor(255, 136, 79))
         qp.setPen(QPen(QColor(255, 136, 79), 3))
-        qp.drawRect(500, 230, 221, 41)
-        qp.drawRect(500,271,41,421)
-        qp.drawRect(680,270,41,421)
+        qp.drawRect(529, 265, 221, 30)
+        qp.drawRect(529, 265, 30, 361)
+        qp.drawRect(720, 265, 30, 361)
+        qp.drawRect(270, 230, 20, 191)
         
     def makePPT(self,directory,subject,pptx_fpath,inputValue):
         prs = Presentation(pptx_fpath)                  # 양식 선택시 불러옴
-        #슬라이드 1~15 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌(14,15는 빈 슬라이드)
+        #슬라이드 1~15 까지 돌면서, inputValue로 부터 받아온 값들을 제목, 부제목에 넣어줌(15는 빈 슬라이드)
         #placeholder : Title, Center Title, Subtitle, Body etc
-    
+        
 
         for i in range(15):
             slide = prs.slides[i]
@@ -138,13 +144,22 @@ class MyWindow(QMainWindow, form_class):
         
     def inputValue(self):
         inputValue= {}
-        for i in range(1,14):
-            nameChild = self.findChild(QLineEdit,"InputName_%d" % (i)).text()
-            namePos = self.findChild(QLineEdit,"InputPos_%d" % (i)).text()
-            inputValue[i]=[nameChild,namePos]
-        inputValue[14]=['','']
-        inputValue[15]=['','']
+        if currentIndex==0:
+            for i in range(1,15):
+                nameChild = self.findChild(QLineEdit,"InputName_%d" % (i)).text()
+                namePos = self.findChild(QLineEdit,"InputPos_%d" % (i)).text()
+                inputValue[i]=[nameChild,namePos]
+            inputValue[15]=['','']
+        else:
+            for i in range(1,15):
+                nameChild_L = self.findChild(QLineEdit,"InputName_%d_L" % (i)).text()
+                nameChild_R = self.findChild(QLineEdit,"InputName_%d_R" % (i)).text()
+                namePos_L = self.findChild(QLineEdit,"InputPos_%d_L" % (i)).text()
+                namePos_R = self.findChild(QLineEdit,"InputPos_%d_R" % (i)).text()
+                inputValue[i] = [[nameChild_L,nameChild_R],[namePos_L,namePos_R]]
+            inputValue[15]=[['',''],['','']]
         return inputValue
+    
     
     def onClickSelect(self):
         # QMessageBox.about(self,"message",'select vox')
@@ -203,6 +218,57 @@ class MyWindow(QMainWindow, form_class):
                     # 블랙인 경우,
                     font.color.rgb = RGBColor(0,0,0)
                     
+            elif shape.name=='name1' or shape.name=='name2' or shape.name=='pos1' or shape.name=='pos2':
+                # shape 내 텍스트 프레임 선택하기 & 기존 값 삭제하기
+                text_frame = shape.text_frame
+                p = text_frame.paragraphs[0]
+                print(p.runs[0])
+                font_size = p.runs[0].font.size.pt
+                font_color = p.runs[0].font.color
+                font_bold = p.runs[0].font.bold
+                font_name = p.runs[0].font.name
+                # font_brightness =  p.runs[0].font.brightness
+                # print(font_color)
+                # print(font_color.brightness)
+                text_frame.clear()
+                # 정렬 설정 : 중간정렬
+                p.alighnment = PP_ALIGN.CENTER   
+                run = p.add_run()
+                if shape.name=="name1":
+                    run.text = inputVal[0][0]
+                elif shape.name=="name2":
+                    run.text = inputVal[0][1]
+                elif shape.name=="pos1":
+                    run.text = inputVal[1][0]
+                elif shape.name=="pos2":
+                    run.text = inputVal[1][1]
+                    
+                font = run.font 
+                font.name = font_name
+                
+                font.size = Pt(font_size)
+                if font_bold==True:
+                    # bold 설정 되어있다면
+                    font.bold = font_bold
+                if font_color.type!=None:
+                    # 블랙아닌 경우
+                    # SCHEME인 경우
+                    
+                    if font_color.theme_color!=0:
+                        font.color.theme_color=font_color.theme_color
+                        font.color.brightness = font_color.brightness
+                        
+                    else:
+                        # RGB인 경우
+                        # print(int(f'{font_color.rgb}',16))
+                        # print(int(str(font_color.rgb)[0:2],16))
+                        
+                        font.color.rgb = RGBColor(int(str(font_color.rgb)[0:2],16),int(str(font_color.rgb)[2:4],16),int(str(font_color.rgb)[4:6],16))
+                        font.color.brightness = font_color.brightness
+                else:
+                    # 블랙인 경우,
+                    font.color.rgb = RGBColor(0,0,0)
+                
     def disableBtn(func):
         def wrapper(self):
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
@@ -212,13 +278,17 @@ class MyWindow(QMainWindow, form_class):
                 
     def createBtn_clicked(self):
         # create 버튼 클릭시 이벤트
+        # 현재 tab이 어디인지 확인(0 or 1)
+        global currentIndex
+        currentIndex = self.LayoutTab.currentIndex()
+        
         # /팀이름/subject/ 로 폴더 생성
-        subject = self.subject.text()                           # 폴더 이름
+        subject = self.subject.text() if currentIndex==0 else self.subject_3.text() # 폴더 이름
         if subject=='':
             # 공백인 경우 입력하게 하기
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
-            deptLabel = self.deptName.currentText()                 # 부서명
+            deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_3.currentText()                # 부서명
             # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
             directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             inputValue = self.inputValue()     
@@ -231,7 +301,31 @@ class MyWindow(QMainWindow, form_class):
                 # 이미 있는 폴더인 경우, 이름 다시 설정.
                 QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
             self.subject.clear()
+            self.subject_3.clear()
+            self.findFormLabel.clear()
         
+    def createBtn3_clicked(self):
+        # Layout2의 createBtn
+        subject = self.subject_3.text()
+        if subject=='':
+            # 공백인 경우 입력하게 하기
+            QMessageBox.about(self,"message","폴더명을 입력해주세요.")
+        else:
+            deptLabel = self.deptName_3.currentText()                 # 부서명
+            # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
+            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            inputValue = self.inputValue2()     
+            if not os.path.exists(directory):
+                os.makedirs(directory)
+                # 폴더 생성 후, ppt 생성
+                self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,선택한 양식경로, 입력값
+                self.makeJPG(directory,subject) 
+            else: 
+                # 이미 있는 폴더인 경우, 이름 다시 설정.
+                QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
+            self.subject_3.clear()
+            self.findFormLabel.clear()
+    
     def deleteBtn_clicked(self):
         # create 버튼 클릭시 이벤트
         folderPath = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
@@ -255,7 +349,8 @@ class MyWindow(QMainWindow, form_class):
             return
         else:
             QMessageBox.information(self,'알림','폴더가 존재하지 않습니다.')
-        
+      
+      
     def ping(self, ip):
         if self.connect_count>=4: #시도 횟수 2번 이상이면 0번으로 갱신 후 stop (한번 시도마다 2개의 ip에 대해 조사)
             self.timer.stop()

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1802</width>
+    <width>1820</width>
     <height>734</height>
    </rect>
   </property>
@@ -19,9 +19,9 @@
   <widget class="QGroupBox" name="LeftBox">
    <property name="geometry">
     <rect>
-     <x>40</x>
+     <x>29</x>
      <y>40</y>
-     <width>1100</width>
+     <width>1111</width>
      <height>761</height>
     </rect>
    </property>
@@ -31,1036 +31,2456 @@
    <property name="checkable">
     <bool>false</bool>
    </property>
-   <widget class="QWidget" name="layoutWidget">
+   <widget class="QTabWidget" name="LayoutTab">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>280</y>
-      <width>191</width>
-      <height>177</height>
+      <x>20</x>
+      <y>60</y>
+      <width>1081</width>
+      <height>612</height>
      </rect>
     </property>
-    <layout class="QFormLayout" name="createLayout">
-     <property name="verticalSpacing">
-      <number>15</number>
-     </property>
-     <item row="0" column="0">
-      <widget class="QLabel" name="subjectLabel">
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Subject</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1">
-      <widget class="QLineEdit" name="subject"/>
-     </item>
-     <item row="2" column="0">
-      <widget class="QLabel" name="deptLabel">
-       <property name="font">
-        <font>
-         <family>맑은 고딕</family>
-         <pointsize>10</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>부서명</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="QComboBox" name="deptName">
-       <item>
-        <property name="text">
-         <string>전략기획팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>경영지원팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>국내관광팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>해외마케팅팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>MICE뷰로</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>관광인프라팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>축제이벤트팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>운영팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>전시마케팅팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>컨벤션마케팅팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>전시사업팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>안전감사팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>관광기업지원센터</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>의료웰니스팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>섬발전지원센터</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>고객홍보팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>스마트관광팀</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>송도컨벤시아사업단</string>
-        </property>
-       </item>
-      </widget>
-     </item>
-     <item row="4" column="0" colspan="2">
-      <widget class="QPushButton" name="createBtn">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Create JPG Files</string>
-       </property>
-      </widget>
-     </item>
-     <item row="5" column="0" colspan="2">
-      <widget class="QPushButton" name="deleteBtn">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>30</height>
-        </size>
-       </property>
-       <property name="text">
-        <string>Delete JPG Files</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
-   <widget class="QGroupBox" name="LayoutBox">
-    <property name="geometry">
-     <rect>
-      <x>260</x>
-      <y>90</y>
-      <width>631</width>
-      <height>601</height>
-     </rect>
+    <property name="focusPolicy">
+     <enum>Qt::TabFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::DefaultContextMenu</enum>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
     </property>
-    <property name="title">
-     <string>Layout</string>
+    <property name="tabPosition">
+     <enum>QTabWidget::North</enum>
     </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+    <property name="tabShape">
+     <enum>QTabWidget::Rounded</enum>
     </property>
-    <widget class="QLineEdit" name="InputName_13">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>540</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_8">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>110</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_11">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>350</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_11</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_11">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>350</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_3">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>350</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_11">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>380</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_10">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>270</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_7">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>30</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_7</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_3">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>380</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_3</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_11">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>380</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_11</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_5">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>190</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_5</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_4">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>300</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_4">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>270</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_8">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>110</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_8</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_13">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>510</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_13</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_8">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>140</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_2">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>430</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_2</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_5">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>220</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_5</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_7">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>60</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_6">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>140</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_12">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>460</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_12</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_2">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>430</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_12">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>460</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_9">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>220</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_9</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_4">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>270</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_4</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_7">
-     <property name="geometry">
-      <rect>
-       <x>270</x>
-       <y>30</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_5">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>220</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_10">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>300</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_10</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_9">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>190</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_9</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_12">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>430</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_12</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_5">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>190</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_8">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>140</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_8</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_10">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>270</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_10</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_1">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>510</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_9">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>220</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_1">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>510</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_1</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_3">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>350</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_3</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_6">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>110</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="posLabel_6">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>직위_6</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_2">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>460</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_1">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>540</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_6">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_6</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_3">
-     <property name="geometry">
-      <rect>
-       <x>80</x>
-       <y>380</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_13">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>510</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_13">
-     <property name="geometry">
-      <rect>
-       <x>550</x>
-       <y>540</y>
-       <width>61</width>
-       <height>21</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_13</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_4">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>300</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_4</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_9">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>190</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_2">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>460</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_2</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputName_10">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>300</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_7">
-     <property name="geometry">
-      <rect>
-       <x>210</x>
-       <y>60</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_7</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="nameLabel_1">
-     <property name="geometry">
-      <rect>
-       <x>23</x>
-       <y>540</y>
-       <width>61</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>이름_1</string>
-     </property>
-    </widget>
-    <widget class="QLineEdit" name="InputPos_12">
-     <property name="geometry">
-      <rect>
-       <x>440</x>
-       <y>430</y>
-       <width>101</width>
-       <height>20</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </widget>
-   <widget class="QScrollArea" name="formSelect_scrollArea">
-    <property name="geometry">
-     <rect>
-      <x>940</x>
-      <y>95</y>
-      <width>131</width>
-      <height>594</height>
-     </rect>
+    <property name="currentIndex">
+     <number>1</number>
     </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="autoFillBackground">
+    <property name="tabsClosable">
      <bool>false</bool>
     </property>
-    <property name="verticalScrollBarPolicy">
-     <enum>Qt::ScrollBarAsNeeded</enum>
+    <property name="movable">
+     <bool>false</bool>
     </property>
-    <property name="widgetResizable">
-     <bool>true</bool>
+    <property name="tabBarAutoHide">
+     <bool>false</bool>
     </property>
-    <property name="maximumSize">
-        <size>
+    <widget class="QWidget" name="Layout1Page">
+     <attribute name="title">
+      <string>Layout1</string>
+     </attribute>
+     <widget class="QLineEdit" name="InputPos_8">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>220</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_11">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>460</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_11</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_11">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>460</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_3">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>300</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_11">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>490</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_10">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>380</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>140</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_7</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>330</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_11">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>490</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_11</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>140</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_5</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_4">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>250</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_4">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>220</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>220</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_8</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_8">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>250</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>380</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_5">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>170</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_5</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_7">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>170</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_6">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>100</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_2">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>380</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_9">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>330</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_9</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>220</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_4</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_7">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>140</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_5">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>170</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_10">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>410</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_10</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_9">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>300</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_9</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_5">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>140</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_8">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>250</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_8</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_10">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>380</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_10</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_1">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>460</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_9">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>330</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_1">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>460</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_3">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>300</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_3</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_6">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>70</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>70</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_6</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_2">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>410</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_1">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>490</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_6">
+      <property name="geometry">
+       <rect>
+        <x>500</x>
+        <y>100</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_6</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_3">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>330</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_4">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>250</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_4</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_9">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>300</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>410</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_2</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_10">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>410</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_7">
+      <property name="geometry">
+       <rect>
+        <x>830</x>
+        <y>170</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_7</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_1">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>490</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_1</string>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>340</y>
+        <width>191</width>
+        <height>177</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="createLayout">
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="formAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="verticalSpacing">
+        <number>15</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="subjectLabel">
+         <property name="font">
+          <font>
+           <family>맑은 고딕</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Subject</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="subject"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="deptLabel">
+         <property name="font">
+          <font>
+           <family>맑은 고딕</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>부서명</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="deptName">
+         <item>
+          <property name="text">
+           <string>전략기획팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>경영지원팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>국내관광팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>해외마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MICE뷰로</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>관광인프라팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>축제이벤트팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>운영팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>전시마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>컨벤션마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>전시사업팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>안전감사팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>관광기업지원센터</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>의료웰니스팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>섬발전지원센터</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>고객홍보팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>스마트관광팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>송도컨벤시아사업단</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QPushButton" name="createBtn">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Create JPG Files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QPushButton" name="deleteBtn">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Delete JPG Files</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="nameLabel_13">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>210</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_13</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_13">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>180</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_13">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>210</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_13">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>180</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_13</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_12">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>280</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_12">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>250</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_12">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>250</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_12</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_12">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>280</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_12</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_14">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>140</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_14">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>110</y>
+        <width>101</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_14">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>140</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_14</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_14">
+      <property name="geometry">
+       <rect>
+        <x>40</x>
+        <y>110</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_14</string>
+      </property>
+     </widget>
+     <widget class="QScrollArea" name="formSelect_scrollArea">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>20</y>
+        <width>131</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
         <width>300</width>
         <height>600</height>
-        </size>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-    </property>
-    <widget class="QWidget" name="scrollAreaWidgetContents">
-     <property name="geometry">
-      <rect>
-       <x>0</x>
-       <y>0</y>
-       <width>109</width>
-       <height>592</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QRadioButton" name="radioBtn_1">
-        <property name="text">
-         <string>서식1</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="image1">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>IMAGE</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioBtn_2">
-        <property name="text">
-         <string>서식2</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="image2">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>IMAGE</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QRadioButton" name="radioBtn_3">
-        <property name="text">
-         <string>서식3</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="image3">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>100</width>
-          <height>80</height>
-         </size>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::Box</enum>
-        </property>
-        <property name="text">
-         <string>IMAGE</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="selectForm">
-        <property name="text">
-         <string>서식 찾기</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="findFormLabel">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>300</width>
-          <height>200</height>
-         </size>
-        </property>
-        <property name="autoFillBackground">
-         <bool>true</bool>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="scaledContents">
-         <bool>false</bool>
-        </property>
-        <property name="alignment">
-         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-        </property>
-        <property name="wordWrap">
-         <bool>true</bool>
-        </property>
-        <property name="margin">
-         <number>8</number>
-        </property>
-       </widget>
-      </item>
-     </layout>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>129</width>
+         <height>549</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QRadioButton" name="radioBtn_1">
+          <property name="text">
+           <string>서식1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="image1">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>IMAGE</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioBtn_2">
+          <property name="text">
+           <string>서식2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="image2">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>IMAGE</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioBtn_3">
+          <property name="text">
+           <string>서식3</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="image3">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>80</height>
+           </size>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::Box</enum>
+          </property>
+          <property name="text">
+           <string>IMAGE</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="selectForm">
+          <property name="text">
+           <string>서식 찾기</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="findFormLabel">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="autoFillBackground">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="scaledContents">
+           <bool>false</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="margin">
+           <number>8</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="Layout2Page">
+     <attribute name="title">
+      <string>Layout2</string>
+     </attribute>
+     <widget class="QLabel" name="nameLabel_2_1">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>490</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_1</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_1_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>490</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QWidget" name="layoutWidget_3">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>340</y>
+        <width>191</width>
+        <height>177</height>
+       </rect>
+      </property>
+      <layout class="QFormLayout" name="createLayout_3">
+       <property name="labelAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="formAlignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+       </property>
+       <property name="verticalSpacing">
+        <number>15</number>
+       </property>
+       <item row="0" column="0">
+        <widget class="QLabel" name="subjectLabel_3">
+         <property name="font">
+          <font>
+           <family>맑은 고딕</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Subject</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLineEdit" name="subject_3"/>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="deptLabel_3">
+         <property name="font">
+          <font>
+           <family>맑은 고딕</family>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>부서명</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QComboBox" name="deptName_3">
+         <item>
+          <property name="text">
+           <string>전략기획팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>경영지원팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>국내관광팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>해외마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>MICE뷰로</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>관광인프라팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>축제이벤트팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>운영팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>전시마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>컨벤션마케팅팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>전시사업팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>안전감사팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>관광기업지원센터</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>의료웰니스팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>섬발전지원센터</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>고객홍보팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>스마트관광팀</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>송도컨벤시아사업단</string>
+          </property>
+         </item>
+        </widget>
+       </item>
+       <item row="4" column="0" colspan="2">
+        <widget class="QPushButton" name="createBtn_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Create JPG Files</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0" colspan="2">
+        <widget class="QPushButton" name="deleteBtn_3">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Delete JPG Files</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_7">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>140</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_7</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_1">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>460</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_7">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>170</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_7</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_1_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>490</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_1_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>460</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_1_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>460</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_2_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>410</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_2_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>380</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_2_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>380</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_2_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>410</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_2">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>410</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_2</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_2">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>380</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_2</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_3_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>330</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_3_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>330</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_3_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>300</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_3_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>300</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_3">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>300</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_3</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_3">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>330</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_3</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_4_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_4_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_4_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>220</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_4_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>220</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_4">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>250</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_4</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_4">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>220</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_4</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_5_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>170</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_5_L">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_5_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>170</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_5_R">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_5">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>140</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_5</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_5">
+      <property name="geometry">
+       <rect>
+        <x>280</x>
+        <y>170</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_5</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_6_R">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>100</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_6_L">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>100</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_6_R">
+      <property name="geometry">
+       <rect>
+        <x>610</x>
+        <y>70</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_6">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>100</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_6</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_6_L">
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>70</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_6">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>70</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_6</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_7_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_7_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_7_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>170</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_7_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>170</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_8">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>220</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_8</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_8">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>250</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_8</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_8_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_8_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>220</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_8_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_8_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>220</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_9">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>330</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_9</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_9">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>300</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_9</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_9_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>330</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_9_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>300</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_9_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>330</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_9_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>300</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_10">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>410</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_10</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_10_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>380</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_10">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>380</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_10</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_10_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>380</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_10_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>410</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_10_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>410</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_11">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>490</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_11</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_11_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>460</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_11_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>490</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_11_R">
+      <property name="geometry">
+       <rect>
+        <x>790</x>
+        <y>490</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_11_L">
+      <property name="geometry">
+       <rect>
+        <x>720</x>
+        <y>460</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_11">
+      <property name="geometry">
+       <rect>
+        <x>860</x>
+        <y>460</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_11</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_12">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>280</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_12</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_12">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>250</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_12</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_13">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>210</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_13</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_13_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>180</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_13_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>180</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_13">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>180</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_13</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nameLabel_2_14">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>140</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>이름_14</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_14_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>110</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_14_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_14_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>140</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_14_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>110</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="posLabel_2_14">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>110</y>
+        <width>51</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>직위_14</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_13_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>210</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_13_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>210</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_12_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>280</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_12_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputPos_12_L">
+      <property name="geometry">
+       <rect>
+        <x>82</x>
+        <y>250</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InputName_12_R">
+      <property name="geometry">
+       <rect>
+        <x>152</x>
+        <y>280</y>
+        <width>61</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QScrollArea" name="formSelect_scrollArea_2">
+      <property name="geometry">
+       <rect>
+        <x>920</x>
+        <y>20</y>
+        <width>131</width>
+        <height>551</height>
+       </rect>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>300</width>
+        <height>600</height>
+       </size>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAsNeeded</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents_5">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>129</width>
+         <height>549</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QPushButton" name="selectForm_2">
+          <property name="text">
+           <string>서식 찾기</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>100</width>
+            <height>16777215</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>★ 한 슬라이드에
+ 두 명 표시하는
+ 슬라이드만 
+선택 가능합니다.</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </widget>
    </widget>
-   <zorder>LayoutBox</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>formSelect_scrollArea</zorder>
   </widget>
   <widget class="QGroupBox" name="RightBox">
    <property name="geometry">
@@ -1252,44 +2672,108 @@
   </widget>
  </widget>
  <tabstops>
-  <tabstop>InputPos_6</tabstop>
-  <tabstop>InputName_6</tabstop>
-  <tabstop>InputPos_5</tabstop>
-  <tabstop>InputName_5</tabstop>
-  <tabstop>InputPos_4</tabstop>
-  <tabstop>InputName_4</tabstop>
-  <tabstop>InputPos_3</tabstop>
-  <tabstop>InputName_3</tabstop>
-  <tabstop>InputPos_2</tabstop>
-  <tabstop>InputName_2</tabstop>
-  <tabstop>InputPos_1</tabstop>
   <tabstop>InputName_1</tabstop>
-  <tabstop>InputPos_8</tabstop>
-  <tabstop>InputName_8</tabstop>
-  <tabstop>InputPos_9</tabstop>
-  <tabstop>InputName_9</tabstop>
-  <tabstop>InputPos_10</tabstop>
-  <tabstop>InputName_10</tabstop>
-  <tabstop>InputPos_11</tabstop>
-  <tabstop>InputName_11</tabstop>
-  <tabstop>InputPos_12</tabstop>
-  <tabstop>InputName_12</tabstop>
-  <tabstop>InputPos_13</tabstop>
-  <tabstop>InputName_13</tabstop>
-  <tabstop>InputPos_7</tabstop>
+  <tabstop>InputPos_1</tabstop>
+  <tabstop>InputName_2</tabstop>
+  <tabstop>InputPos_2</tabstop>
+  <tabstop>InputName_3</tabstop>
+  <tabstop>InputPos_3</tabstop>
+  <tabstop>InputName_4</tabstop>
+  <tabstop>InputPos_4</tabstop>
+  <tabstop>InputName_5</tabstop>
+  <tabstop>InputPos_5</tabstop>
+  <tabstop>InputName_6</tabstop>
+  <tabstop>InputPos_6</tabstop>
   <tabstop>InputName_7</tabstop>
-  <tabstop>createBtn</tabstop>
-  <tabstop>subject</tabstop>
-  <tabstop>deleteBtn</tabstop>
-  <tabstop>formSelect_scrollArea</tabstop>
-  <tabstop>deptName</tabstop>
-  <tabstop>radioBtn_1</tabstop>
+  <tabstop>InputPos_7</tabstop>
+  <tabstop>InputName_8</tabstop>
+  <tabstop>InputPos_8</tabstop>
+  <tabstop>InputName_9</tabstop>
+  <tabstop>InputPos_9</tabstop>
+  <tabstop>InputName_10</tabstop>
+  <tabstop>InputPos_10</tabstop>
+  <tabstop>InputName_11</tabstop>
+  <tabstop>InputPos_11</tabstop>
+  <tabstop>InputName_12</tabstop>
+  <tabstop>InputPos_12</tabstop>
+  <tabstop>InputName_13</tabstop>
+  <tabstop>InputPos_13</tabstop>
+  <tabstop>InputName_14</tabstop>
+  <tabstop>InputPos_14</tabstop>
   <tabstop>radioBtn_2</tabstop>
   <tabstop>radioBtn_3</tabstop>
   <tabstop>wallActivBtn</tabstop>
   <tabstop>nameActivBtn</tabstop>
   <tabstop>wallLinkBtn</tabstop>
   <tabstop>nameLinkBtn</tabstop>
+  <tabstop>LayoutTab</tabstop>
+  <tabstop>selectForm</tabstop>
+  <tabstop>formSelect_scrollArea</tabstop>
+  <tabstop>deleteBtn</tabstop>
+  <tabstop>createBtn</tabstop>
+  <tabstop>subject</tabstop>
+  <tabstop>deptName</tabstop>
+  <tabstop>radioBtn_1</tabstop>
+  <tabstop>InputName_1_L</tabstop>
+  <tabstop>InputPos_1_L</tabstop>
+  <tabstop>InputName_1_R</tabstop>
+  <tabstop>InputPos_1_R</tabstop>
+  <tabstop>InputName_2_L</tabstop>
+  <tabstop>InputPos_2_L</tabstop>
+  <tabstop>InputName_2_R</tabstop>
+  <tabstop>InputPos_2_R</tabstop>
+  <tabstop>InputName_3_L</tabstop>
+  <tabstop>InputPos_3_L</tabstop>
+  <tabstop>InputName_3_R</tabstop>
+  <tabstop>InputPos_3_R</tabstop>
+  <tabstop>InputName_4_L</tabstop>
+  <tabstop>InputPos_4_L</tabstop>
+  <tabstop>InputName_4_R</tabstop>
+  <tabstop>InputPos_4_R</tabstop>
+  <tabstop>InputName_5_L</tabstop>
+  <tabstop>InputPos_5_L</tabstop>
+  <tabstop>InputName_5_R</tabstop>
+  <tabstop>InputPos_5_R</tabstop>
+  <tabstop>InputName_6_L</tabstop>
+  <tabstop>InputPos_6_L</tabstop>
+  <tabstop>InputName_6_R</tabstop>
+  <tabstop>InputPos_6_R</tabstop>
+  <tabstop>InputName_7_L</tabstop>
+  <tabstop>InputPos_7_L</tabstop>
+  <tabstop>InputName_7_R</tabstop>
+  <tabstop>InputPos_7_R</tabstop>
+  <tabstop>InputName_8_L</tabstop>
+  <tabstop>InputPos_8_L</tabstop>
+  <tabstop>InputName_8_R</tabstop>
+  <tabstop>InputPos_8_R</tabstop>
+  <tabstop>InputName_9_L</tabstop>
+  <tabstop>InputPos_9_L</tabstop>
+  <tabstop>InputName_9_R</tabstop>
+  <tabstop>InputPos_9_R</tabstop>
+  <tabstop>InputName_10_L</tabstop>
+  <tabstop>InputPos_10_L</tabstop>
+  <tabstop>InputName_10_R</tabstop>
+  <tabstop>InputPos_10_R</tabstop>
+  <tabstop>InputName_11_L</tabstop>
+  <tabstop>InputPos_11_L</tabstop>
+  <tabstop>InputName_11_R</tabstop>
+  <tabstop>InputPos_11_R</tabstop>
+  <tabstop>InputName_12_L</tabstop>
+  <tabstop>InputPos_12_L</tabstop>
+  <tabstop>InputName_12_R</tabstop>
+  <tabstop>InputPos_12_R</tabstop>
+  <tabstop>InputName_13_L</tabstop>
+  <tabstop>InputPos_13_L</tabstop>
+  <tabstop>InputName_13_R</tabstop>
+  <tabstop>InputPos_13_R</tabstop>
+  <tabstop>InputName_14_L</tabstop>
+  <tabstop>InputPos_14_L</tabstop>
+  <tabstop>InputName_14_R</tabstop>
+  <tabstop>InputPos_14_R</tabstop>
+  <tabstop>deptName_3</tabstop>
+  <tabstop>subject_3</tabstop>
+  <tabstop>createBtn_3</tabstop>
+  <tabstop>deleteBtn_3</tabstop>
  </tabstops>
  <resources/>
  <connections/>
