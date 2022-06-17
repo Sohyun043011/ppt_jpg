@@ -1,11 +1,11 @@
-#createBtn, #deleteBtn, #wallActivBtn, #nameActivBtn, #wallLinkBtn, #nameLinkBtn, #createBtn_3, #deleteBtn_3{
+#createBtn, #deleteBtn, #wallActivBtn, #nameActivBtn, #wallLinkBtn, #nameLinkBtn, #createBtn_2, #deleteBtn_2{
 	color: black;
 	border: 1px solid black;
 	border-radius: 5px;
 }
 
-#createBtn:enabled, #deleteBtn:enabled, #wallActivBtn:enabled ,#nameActivBtn:enabled, #wallLinkBtn:enabled, #nameLinkBtn:enabled, #createBtn_3:enabled,
-#deleteBtn_3:enabled{
+#createBtn:enabled, #deleteBtn:enabled, #wallActivBtn:enabled ,#nameActivBtn:enabled, #wallLinkBtn:enabled, #nameLinkBtn:enabled, #createBtn_2:enabled,
+#deleteBtn_2:enabled{
 	color: blue;
 }
 
