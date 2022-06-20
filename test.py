@@ -314,7 +314,7 @@ class MyWindow(QMainWindow, form_class):
         folder_list = os.listdir(dataImage_default_path)
         for folder in folder_list:
             self.dialog.combo_box.addItem(folder)
-        self.dialog.combo_box.move(170,16)
+        self.dialog.combo_box.move(10,40)
         self.dialog.combo_box.activated[str].connect(self.onActived)
         
         #combobox list 선택 시 하위 폴더들 리스트로 가져오기
