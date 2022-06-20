@@ -296,7 +296,8 @@ class MyWindow(QMainWindow, form_class):
         # create 버튼 클릭시 이벤트, new_dialog를 통해 새 창에서 지울 수 있는 UI 구성
         self.dialog=QDialog(self)
         self.dialog.setWindowModality(Qt.ApplicationModal)
-        self.dialog.setFixedSize(500,400)
+        self.dialog.setWindowTitle('삭제')
+        self.dialog.setFixedSize(430,370)
         self.dialog.selectLabel=QLabel('부서 폴더를 선택해주세요.', self.dialog)
         self.dialog.selectedDept=''
         self.dialog.selectLabel.move(10,20)
