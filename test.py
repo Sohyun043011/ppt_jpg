@@ -123,7 +123,9 @@ class MyWindow(QMainWindow, form_class):
     # makePPT로 만든 ppt 를 JPG로 변환해주는 함수 .1~15개 슬라이드를 1~30 장으로 변환한다. 
     def makeJPG(self,directory,subject):
         ppt = client.CreateObject('Powerpoint.Application')
-        ppt.Presentations.Open(directory+"\\"+subject+".pptx")
+        print(directory+"\\"+subject+".pptx")
+        subject=subject+".pptx"
+        ppt.Presentations.Open(os.path.join(directory,subject))
         ppt.ActivePresentation.Export(directory, 'JPG')
         ppt.ActivePresentation.Close()
         ppt.Quit()
@@ -268,8 +270,8 @@ class MyWindow(QMainWindow, form_class):
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
-            # directory = dataImage_default_path+"\\"+deptLabel+"\\"+subject     # 디렉토리 경로
-            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+            #directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             inputValue = self.inputValue()      #사용자가 입력한 정보
             if not os.path.exists(directory):
                 os.makedirs(directory)
