@@ -7,7 +7,7 @@ from pptx.enum.text import PP_ALIGN
 from pptx.dml.color import RGBColor
 from pptx.util import Pt
 from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
-from PyQt5.QtCore import QTimer
+from PyQt5.QtCore import QTimer, Qt
 import urllib.request
 import webbrowser
 from comtypes import client
@@ -25,6 +25,8 @@ class MyWindow(QMainWindow, form_class):
         self.setFixedSize(1600, 850) # 창 사이즈 고정
         self.setWindowTitle('화상회의실 관리 프로그램') # 프로그램 Title 설정
         self.setWindowIcon(QIcon('./wrench.png')) # 프로그램 아이콘 설정
+        
+        
         self.connect_count=0 # 연결 시도 횟수 설정
         
         self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
@@ -291,29 +293,69 @@ class MyWindow(QMainWindow, form_class):
         
     
     def deleteBtn_clicked(self):
-        # create 버튼 클릭시 이벤트
-        folderPath = QFileDialog.getExistingDirectory(self, '폴더를 선택해주세요', dataImage_default_path, QFileDialog.ShowDirsOnly)
-        print(folderPath.split('/')[-2])
+        # create 버튼 클릭시 이벤트, new_dialog를 통해 새 창에서 지울 수 있는 UI 구성
+        self.dialog=QDialog(self)
+        self.dialog.setWindowModality(Qt.ApplicationModal)
+        self.dialog.setFixedSize(500,400)
+        self.dialog.selectLabel=QLabel('부서 폴더를 선택해주세요.', self.dialog)
+        self.dialog.selectedDept=''
+        self.dialog.selectLabel.move(10,20)
+        self.dialog.combo_box=QComboBox(self.dialog)
         
+        self.dialog.listWidget=QListWidget(self.dialog)
+        self.dialog.listWidget.setGeometry(10,80,400,200) 
+        
+        self.dialog.deleteBtn=QPushButton('삭제하기',self.dialog)
+        self.dialog.deleteBtn.setGeometry(10,300,100,50) 
+        self.dialog.deleteBtn.clicked.connect(self.underFolderDelete)
+        
+        #combobox list 추가 (dataImage에 존재하는 모든 디렉토리명 가져오기)
+        
+        folder_list = os.listdir(dataImage_default_path)
+        for folder in folder_list:
+            self.dialog.combo_box.addItem(folder)
+        self.dialog.combo_box.move(170,16)
+        self.dialog.combo_box.activated[str].connect(self.onActived)
+        
+        #combobox list 선택 시 하위 폴더들 리스트로 가져오기
+        self.dialog.show()
+    
+    def onActived(self, text): # 부서 선택 시 하위 폴더들 표출
+        self.dialog.listWidget.clear()
+        
+        under_folder_list = os.listdir(os.path.join(dataImage_default_path, text))
+        for folder in under_folder_list:
+            QListWidgetItem(folder, self.dialog.listWidget)
+
+    def underFolderDelete(self):
+        temp_path=[item.text() for item in self.dialog.listWidget.selectedItems()]
+        if len(temp_path)==0:
+            return
+
+        folderPath=os.path.join(dataImage_default_path, self.dialog.combo_box.currentText() ,temp_path[0])
+
         
         if os.path.exists(folderPath): # 폴더가 존재할 때
             # 폴더 상위폴더가 dataImage일 경우(부서 카테고리를 지우려고 하는 경우)
-            if folderPath.split('/')[-2]=='dataImage':
+            if folderPath.split('\\')[-2]=='dataImage':
                 QMessageBox.warning(self, '알림', '부서 카테고리는 삭제할 수 없습니다. 다시 시도해주세요.')
                 return
-            if '/'.join(folderPath.split('/')[:-2])!='C:/Server/Gachi/Qname/dataImage':
+            if '/'.join(folderPath.split('\\')[:-2])!='C:/Server/Gachi/Qname/dataImage':
                 QMessageBox.warning(self, '알림', '다른 디렉토리에 존재하는 파일은 삭제할 수 없습니다. 다시 시도해주세요.')
                 return
             
-            buttonReply=QMessageBox.information(self,'알림','정말로 해당 파일을 삭제하시겠습니까?', QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+            buttonReply=QMessageBox.information(self,'알림',f'정말로 {temp_path[0]} 폴더를 삭제하시겠습니까?', QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
             if buttonReply==QMessageBox.Yes:
-                shutil.rmtree(folderPath) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
-                QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
-        elif folderPath=='':
-            return
+                try:
+                    shutil.rmtree(folderPath) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
+                    QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
+                    lst_modelIndex=self.dialog.listWidget.selectedIndexes()
+                    for modelIndex in lst_modelIndex:
+                        self.dialog.listWidget.model().removeRow(modelIndex.row())
+                except Exception as e:
+                    QMessageBox.warning(self, '알림', '다른 프로세스가 파일을 사용 중이기 때문에 해당 폴더를 제거할 수 없습니다.')
         else:
             QMessageBox.information(self,'알림','폴더가 존재하지 않습니다.')
-      
       
     def ping(self, ip):
         if self.connect_count>=4: #시도 횟수 2번 이상이면 0번으로 갱신 후 stop (한번 시도마다 2개의 ip에 대해 조사)
@@ -328,20 +370,20 @@ class MyWindow(QMainWindow, form_class):
         except urllib.request.URLError as err:
             return False
     
-    def update_network(self): # 스마트월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
+    def update_network(self): # 스마트월 ip와 디지털명패 ip 각각의 연결성을 확인 후 상태 표시
         wall_ip="192.168.0.60" #스마트월 ip
-        name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
+        name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #디지털명패 ip
         self.nameLinkBtn.setDisabled(True)
         self.wallLinkBtn.setDisabled(True)
         
         if self.ping(wall_ip):
             self.statusLabel.setText('스마트월 연결 성공')
-            self.statusLabel.setStyleSheet("Ccolor : blue;")
+            self.statusLabel.setStyleSheet("color : blue;")
             self.wallLinkBtn.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         elif self.ping(name_ip):
-            self.statusLabel.setText('스마트명패 연결 성공')
+            self.statusLabel.setText('디지털명패 연결 성공')
             self.statusLabel.setStyleSheet("color : blue;")
             self.nameLinkBtn.setDisabled(False)
             self.timer.stop()
@@ -351,8 +393,8 @@ class MyWindow(QMainWindow, form_class):
             self.statusLabel.setStyleSheet("color : red;")
             
     @disableBtn        
-    def onNameActivClick(self): # 스마트명패 활성화 버튼 눌렀을 때 onclick function
-        QMessageBox.information(self,'알림','스마트명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
+    def onNameActivClick(self): # 디지털명패 활성화 버튼 눌렀을 때 onclick function
+        QMessageBox.information(self,'알림','디지털명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         os.startfile('enable.bat.lnk')
         self.timer.start()
 
