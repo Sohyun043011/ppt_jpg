@@ -2534,9 +2534,9 @@
     <property name="geometry">
      <rect>
       <x>40</x>
-      <y>90</y>
+      <y>49</y>
       <width>320</width>
-      <height>300</height>
+      <height>341</height>
      </rect>
     </property>
     <property name="sizePolicy">
