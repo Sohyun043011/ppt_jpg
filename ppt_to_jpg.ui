@@ -56,7 +56,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="tabsClosable">
      <bool>false</bool>
@@ -165,7 +165,7 @@
      <widget class="QLabel" name="nameLabel_3">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>330</y>
         <width>51</width>
         <height>20</height>
@@ -191,7 +191,7 @@
      <widget class="QLabel" name="posLabel_5">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>140</y>
         <width>51</width>
         <height>20</height>
@@ -256,7 +256,7 @@
      <widget class="QLabel" name="posLabel_2">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>380</y>
         <width>51</width>
         <height>21</height>
@@ -269,7 +269,7 @@
      <widget class="QLabel" name="nameLabel_5">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>170</y>
         <width>51</width>
         <height>20</height>
@@ -334,7 +334,7 @@
      <widget class="QLabel" name="posLabel_4">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>220</y>
         <width>51</width>
         <height>20</height>
@@ -464,7 +464,7 @@
      <widget class="QLabel" name="posLabel_1">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>460</y>
         <width>51</width>
         <height>21</height>
@@ -477,7 +477,7 @@
      <widget class="QLabel" name="posLabel_3">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>300</y>
         <width>51</width>
         <height>20</height>
@@ -568,7 +568,7 @@
      <widget class="QLabel" name="nameLabel_4">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>250</y>
         <width>51</width>
         <height>20</height>
@@ -594,7 +594,7 @@
      <widget class="QLabel" name="nameLabel_2">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>410</y>
         <width>51</width>
         <height>20</height>
@@ -633,7 +633,7 @@
      <widget class="QLabel" name="nameLabel_1">
       <property name="geometry">
        <rect>
-        <x>310</x>
+        <x>300</x>
         <y>490</y>
         <width>51</width>
         <height>20</height>
@@ -816,7 +816,7 @@
      <widget class="QLabel" name="nameLabel_13">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>210</y>
         <width>51</width>
         <height>21</height>
@@ -855,7 +855,7 @@
      <widget class="QLabel" name="posLabel_13">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>180</y>
         <width>51</width>
         <height>21</height>
@@ -894,7 +894,7 @@
      <widget class="QLabel" name="posLabel_12">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>250</y>
         <width>51</width>
         <height>21</height>
@@ -907,7 +907,7 @@
      <widget class="QLabel" name="nameLabel_12">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>280</y>
         <width>51</width>
         <height>21</height>
@@ -946,7 +946,7 @@
      <widget class="QLabel" name="nameLabel_14">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>140</y>
         <width>51</width>
         <height>21</height>
@@ -959,7 +959,7 @@
      <widget class="QLabel" name="posLabel_14">
       <property name="geometry">
        <rect>
-        <x>40</x>
+        <x>30</x>
         <y>110</y>
         <width>51</width>
         <height>21</height>
@@ -972,7 +972,7 @@
      <widget class="QScrollArea" name="formSelect_scrollArea">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>930</x>
         <y>20</y>
         <width>131</width>
         <height>551</height>
@@ -1145,7 +1145,7 @@
      <widget class="QLabel" name="nameLabel_2_1">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>490</y>
         <width>51</width>
         <height>20</height>
@@ -1354,7 +1354,7 @@
      <widget class="QLabel" name="posLabel_2_1">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>460</y>
         <width>51</width>
         <height>21</height>
@@ -1471,7 +1471,7 @@
      <widget class="QLabel" name="nameLabel_2_2">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>410</y>
         <width>51</width>
         <height>20</height>
@@ -1484,7 +1484,7 @@
      <widget class="QLabel" name="posLabel_2_2">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>380</y>
         <width>51</width>
         <height>21</height>
@@ -1549,7 +1549,7 @@
      <widget class="QLabel" name="posLabel_2_3">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>300</y>
         <width>51</width>
         <height>21</height>
@@ -1562,7 +1562,7 @@
      <widget class="QLabel" name="nameLabel_2_3">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>330</y>
         <width>51</width>
         <height>20</height>
@@ -1627,7 +1627,7 @@
      <widget class="QLabel" name="nameLabel_2_4">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>250</y>
         <width>51</width>
         <height>20</height>
@@ -1640,7 +1640,7 @@
      <widget class="QLabel" name="posLabel_2_4">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>220</y>
         <width>51</width>
         <height>21</height>
@@ -1705,7 +1705,7 @@
      <widget class="QLabel" name="posLabel_2_5">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>140</y>
         <width>51</width>
         <height>21</height>
@@ -1718,7 +1718,7 @@
      <widget class="QLabel" name="nameLabel_2_5">
       <property name="geometry">
        <rect>
-        <x>280</x>
+        <x>270</x>
         <y>170</y>
         <width>51</width>
         <height>20</height>
@@ -2173,7 +2173,7 @@
      <widget class="QLabel" name="nameLabel_2_12">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>280</y>
         <width>51</width>
         <height>20</height>
@@ -2186,7 +2186,7 @@
      <widget class="QLabel" name="posLabel_2_12">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>250</y>
         <width>51</width>
         <height>21</height>
@@ -2199,7 +2199,7 @@
      <widget class="QLabel" name="nameLabel_2_13">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>210</y>
         <width>51</width>
         <height>20</height>
@@ -2238,7 +2238,7 @@
      <widget class="QLabel" name="posLabel_2_13">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>180</y>
         <width>51</width>
         <height>21</height>
@@ -2251,7 +2251,7 @@
      <widget class="QLabel" name="nameLabel_2_14">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>140</y>
         <width>51</width>
         <height>20</height>
@@ -2316,7 +2316,7 @@
      <widget class="QLabel" name="posLabel_2_14">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>110</y>
         <width>51</width>
         <height>21</height>
@@ -2407,9 +2407,9 @@
      <widget class="QScrollArea" name="formSelect_scrollArea_2">
       <property name="geometry">
        <rect>
-        <x>920</x>
+        <x>930</x>
         <y>20</y>
-        <width>131</width>
+        <width>141</width>
         <height>551</height>
        </rect>
       </property>
@@ -2439,7 +2439,7 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>129</width>
+         <width>139</width>
          <height>549</height>
         </rect>
        </property>
@@ -2452,17 +2452,17 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="findFormLabel2">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="maximumSize">
            <size>
-            <width>100</width>
-            <height>16777215</height>
+            <width>300</width>
+            <height>200</height>
            </size>
           </property>
           <property name="text">
@@ -2471,8 +2471,17 @@
  슬라이드만 
 선택 가능합니다.</string>
           </property>
+          <property name="textFormat">
+           <enum>Qt::AutoText</enum>
+          </property>
           <property name="alignment">
-           <set>Qt::AlignCenter</set>
+           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+          </property>
+          <property name="wordWrap">
+           <bool>true</bool>
+          </property>
+          <property name="margin">
+           <number>6</number>
           </property>
          </widget>
         </item>

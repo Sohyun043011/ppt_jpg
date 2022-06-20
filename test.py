@@ -123,7 +123,7 @@ class MyWindow(QMainWindow, form_class):
     # makePPT로 만든 ppt 를 JPG로 변환해주는 함수 .1~15개 슬라이드를 1~30 장으로 변환한다. 
     def makeJPG(self,directory,subject):
         ppt = client.CreateObject('Powerpoint.Application')
-        print(directory+"\\"+subject+".pptx")
+        # print(directory+"\\"+subject+".pptx")
         subject=subject+".pptx"
         ppt.Presentations.Open(os.path.join(directory,subject))
         ppt.ActivePresentation.Export(directory, 'JPG')
@@ -159,12 +159,14 @@ class MyWindow(QMainWindow, form_class):
     # [서식 찾기] 버튼 누를 때 실행되는 함수.파일 탐색기를 열어 사용자가 선택한 양식의 path를 가져옴.
     def onClickSelect(self):
         global pptx_fpath
+        currentIndex = self.LayoutTab.currentIndex()
         select_file = QFileDialog.getOpenFileName(self)             # 파일탐색기 열림
         pptx_fpath = select_file[0]                                 # 해당 파일의 경로(ex) C://어쩌고~//양식7.pptx
         if pptx_fpath=='':
             QMessageBox.about(self,"message","파일이 선택되지 않았습니다.다시 선택해주세요.")
-        else: self.findFormLabel.setText("선택 서식 : \n"+pptx_fpath)       #파일 제대로 선택된 경우 버튼 밑에 선택 서식 경로 표출해줌
-    
+        else:
+            self.findFormLabel.setText("선택 서식 : \n"+pptx_fpath) if currentIndex==0 else  self.findFormLabel2.setText("선택 서식 : \n"+pptx_fpath)
+            
     # 사용자가 입력한 값(이름,직위)을 새로 생성한 ppt에 적용하는 함수
     def text_on_shape(self,shapes,inputVal):
         # shapes : 한 슬라이드 안의 구조들
@@ -270,8 +272,8 @@ class MyWindow(QMainWindow, form_class):
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
-            directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
-            #directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            # directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             inputValue = self.inputValue()      #사용자가 입력한 정보
             if not os.path.exists(directory):
                 os.makedirs(directory)
