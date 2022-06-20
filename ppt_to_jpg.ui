@@ -2558,10 +2558,13 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>★ 스마트월 또는 스마트명패를 이용하기 전 아래 상태 표시창에서 연결 상태 확인 후 해당 서비스로 연결되어있지 않은 상태라면 활성화 버튼을 눌러주시기 바랍니다.
+     <string>★ 스마트월 또는 디지털명패를 이용하기 전 아래 상태 표시창에서 연결 상태 확인 후 해당 서비스로 연결되어있지 않은 상태라면 활성화 버튼을 눌러주시기 바랍니다.
 
 ★ 활성화 버튼을 누른 후에도 접속이 되지 않는다면, 한번 더 활성화 버튼을 눌러주시거나, 프로그램을 종료 후 다시 실행해주시기 바랍니다.
-★ 스마트월 관리자 계정 id : administrator PW : adminadmin
+
+★ 스마트월 관리자 계정 
+   id : administrator 
+   PW : adminadmin
 </string>
     </property>
     <property name="textFormat">
@@ -2651,7 +2654,7 @@
           </size>
          </property>
          <property name="text">
-          <string>스마트명패 활성화</string>
+          <string>디지털명패 활성화</string>
          </property>
         </widget>
        </item>
@@ -2684,7 +2687,7 @@
           </size>
          </property>
          <property name="text">
-          <string>스마트명패 링크</string>
+          <string>디지털명패 링크</string>
          </property>
         </widget>
        </item>
