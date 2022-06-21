@@ -2563,8 +2563,8 @@
 ★ 활성화 버튼을 누른 후에도 접속이 되지 않는다면, 한번 더 활성화 버튼을 눌러주시거나, 프로그램을 종료 후 다시 실행해주시기 바랍니다.
 
 ★ 스마트월 관리자 계정 
-   id : administrator 
-   PW : adminadmin
+    ID : administrator 
+    PW : adminadmin
 </string>
     </property>
     <property name="textFormat">
