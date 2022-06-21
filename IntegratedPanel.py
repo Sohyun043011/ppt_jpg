@@ -282,8 +282,8 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
-            # directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
-            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+            # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             inputValue = self.inputValue()      #사용자가 입력한 정보
             if not os.path.exists(directory):
                 os.makedirs(directory)
@@ -442,8 +442,6 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         webbrowser.get(self.chrome_path).open("192.168.0.60")
     def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
-    
-    
     
 if __name__ == "__main__":
     try:
