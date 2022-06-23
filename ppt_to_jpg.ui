@@ -94,7 +94,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_11</string>
+       <string>소속(직위) 11</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_11">
@@ -159,7 +159,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_7</string>
+       <string>소속(직위) 7</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_3">
@@ -172,7 +172,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_3</string>
+       <string>이름 3</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_11">
@@ -185,7 +185,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_11</string>
+       <string>이름 11</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_5">
@@ -198,7 +198,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_5</string>
+       <string>소속(직위) 5</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_4">
@@ -237,7 +237,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_8</string>
+       <string>소속(직위) 8</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_8">
@@ -263,7 +263,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_2</string>
+       <string>소속(직위) 2</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_5">
@@ -276,7 +276,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_5</string>
+       <string>이름 5</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_7">
@@ -328,7 +328,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_9</string>
+       <string>이름 9</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_4">
@@ -341,7 +341,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_4</string>
+       <string>소속(직위) 4</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_7">
@@ -380,7 +380,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_10</string>
+       <string>이름 10</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_9">
@@ -393,7 +393,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_9</string>
+       <string>소속(직위) 9</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_5">
@@ -419,7 +419,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_8</string>
+       <string>이름 8</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_10">
@@ -432,7 +432,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_10</string>
+       <string>소속(직위) 10</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_1">
@@ -471,7 +471,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_1</string>
+       <string>소속(직위) 1</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_3">
@@ -484,7 +484,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_3</string>
+       <string>소속(직위) 3</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_6">
@@ -510,7 +510,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_6</string>
+       <string>소속(직위) 6</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_2">
@@ -549,7 +549,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_6</string>
+       <string>이름 6</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_3">
@@ -575,7 +575,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_4</string>
+       <string>이름 4</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_9">
@@ -601,7 +601,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_2</string>
+       <string>이름 2</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_10">
@@ -627,7 +627,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_7</string>
+       <string>이름 7</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_1">
@@ -640,7 +640,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_1</string>
+       <string>이름 1</string>
       </property>
      </widget>
      <widget class="QWidget" name="layoutWidget">
@@ -786,7 +786,7 @@
          </item>
          <item>
           <property name="text">
-           <string>송도컨벤시아사업단</string>
+           <string>기타</string>
           </property>
          </item>
         </widget>
@@ -800,7 +800,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Create JPG Files</string>
+          <string>JPG 파일 생성</string>
          </property>
         </widget>
        </item>
@@ -813,7 +813,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Delete JPG Files</string>
+          <string>JPG 파일 삭제</string>
          </property>
         </widget>
        </item>
@@ -829,7 +829,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_13</string>
+       <string>이름 13</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_13">
@@ -868,7 +868,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_13</string>
+       <string>소속(직위) 13</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_12">
@@ -907,7 +907,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_12</string>
+       <string>소속(직위) 12</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_12">
@@ -920,7 +920,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_12</string>
+       <string>이름 12</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_14">
@@ -959,7 +959,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_14</string>
+       <string>이름 14</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_14">
@@ -972,7 +972,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_14</string>
+       <string>소속(직위) 14</string>
       </property>
      </widget>
      <widget class="QScrollArea" name="formSelect_scrollArea">
@@ -1158,7 +1158,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_1</string>
+       <string>이름 1</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_1_L">
@@ -1202,7 +1202,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Subject</string>
+          <string>회의명</string>
          </property>
         </widget>
        </item>
@@ -1317,7 +1317,7 @@
          </item>
          <item>
           <property name="text">
-           <string>송도컨벤시아사업단</string>
+           <string>기타</string>
           </property>
          </item>
         </widget>
@@ -1360,7 +1360,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_7</string>
+       <string>소속(직위) 7</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_2_1">
@@ -1373,7 +1373,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_1</string>
+       <string>소속(직위) 1</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_7">
@@ -1386,7 +1386,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_7</string>
+       <string>이름 7</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_1_R">
@@ -1490,7 +1490,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_2</string>
+       <string>이름 2</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_2_2">
@@ -1503,7 +1503,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_2</string>
+       <string>소속(직위) 2</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_3_L">
@@ -1568,7 +1568,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_3</string>
+       <string>소속(직위) 3</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_3">
@@ -1581,7 +1581,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_3</string>
+       <string>이름 3</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_4_L">
@@ -1646,7 +1646,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_4</string>
+       <string>이름 4</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_2_4">
@@ -1659,7 +1659,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_4</string>
+       <string>소속(직위) 4</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_5_L">
@@ -1724,7 +1724,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_5</string>
+       <string>소속(직위) 5</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_5">
@@ -1737,7 +1737,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_5</string>
+       <string>이름 5</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_6_R">
@@ -1789,7 +1789,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_6</string>
+       <string>이름 6</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_6_L">
@@ -1815,7 +1815,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_6</string>
+       <string>소속(직위) 6</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_7_L">
@@ -1880,7 +1880,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_8</string>
+       <string>소속(직위) 8</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_8">
@@ -1893,7 +1893,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_8</string>
+       <string>이름 8</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_8_L">
@@ -1958,7 +1958,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_9</string>
+       <string>이름 9</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_2_9">
@@ -1971,7 +1971,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_9</string>
+       <string>소속(직위) 9</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_9_L">
@@ -2036,7 +2036,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_10</string>
+       <string>이름 10</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_10_R">
@@ -2062,7 +2062,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_10</string>
+       <string>소속(직위) 10</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_10_L">
@@ -2114,7 +2114,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_11</string>
+       <string>이름 11</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_11_R">
@@ -2179,7 +2179,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_11</string>
+       <string>소속(직위) 11</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_12">
@@ -2192,7 +2192,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_12</string>
+       <string>이름 12</string>
       </property>
      </widget>
      <widget class="QLabel" name="posLabel_2_12">
@@ -2205,7 +2205,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_12</string>
+       <string>소속(직위) 12</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_13">
@@ -2218,7 +2218,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_13</string>
+       <string>이름 13</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_13_R">
@@ -2257,7 +2257,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_13</string>
+       <string>소속(직위) 13</string>
       </property>
      </widget>
      <widget class="QLabel" name="nameLabel_2_14">
@@ -2270,7 +2270,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>이름_14</string>
+       <string>이름 14</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputPos_14_R">
@@ -2335,7 +2335,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>직위_14</string>
+       <string>소속(직위) 14</string>
       </property>
      </widget>
      <widget class="QLineEdit" name="InputName_13_R">
@@ -2525,7 +2525,7 @@
     </size>
    </property>
    <property name="title">
-    <string>Service Control</string>
+    <string>서비스 컨트롤</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -2558,11 +2558,11 @@
      <enum>QFrame::Box</enum>
     </property>
     <property name="text">
-     <string>★ 스마트월 또는 디지털명패를 이용하기 전 아래 상태 표시창에서 연결 상태 확인 후 해당 서비스로 연결되어있지 않은 상태라면 활성화 버튼을 눌러주시기 바랍니다.
+     <string>★ 비디오월 또는 스마트명패를 이용하기 전 아래 상태 표시창에서 연결 상태 확인 후 해당 서비스로 연결되어있지 않은 상태라면 활성화 버튼을 눌러주시기 바랍니다.
 
 ★ 활성화 버튼을 누른 후에도 접속이 되지 않는다면, 한번 더 활성화 버튼을 눌러주시거나, 프로그램을 종료 후 다시 실행해주시기 바랍니다.
 
-★ 스마트월 관리자 계정 
+★ 비디오월 관리자 계정 
     ID : administrator 
     PW : adminadmin
 </string>
@@ -2641,7 +2641,7 @@
           </size>
          </property>
          <property name="text">
-          <string>스마트월 활성화</string>
+          <string>비디오월 활성화</string>
          </property>
         </widget>
        </item>
@@ -2654,7 +2654,7 @@
           </size>
          </property>
          <property name="text">
-          <string>디지털명패 활성화</string>
+          <string>스마트명패 활성화</string>
          </property>
         </widget>
        </item>
@@ -2674,7 +2674,7 @@
           </size>
          </property>
          <property name="text">
-          <string>스마트월 링크</string>
+          <string>비디오월 링크</string>
          </property>
         </widget>
        </item>
@@ -2687,7 +2687,7 @@
           </size>
          </property>
          <property name="text">
-          <string>디지털명패 링크</string>
+          <string>스마트명패 링크</string>
          </property>
         </widget>
        </item>
