@@ -69,7 +69,7 @@
     </property>
     <widget class="QWidget" name="Layout1Page">
      <attribute name="title">
-      <string>Layout1</string>
+      <string>기본 명패</string>
      </attribute>
      <widget class="QLineEdit" name="InputPos_8">
       <property name="geometry">
@@ -671,7 +671,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Subject</string>
+          <string>회의명</string>
          </property>
         </widget>
        </item>
@@ -1146,7 +1146,7 @@
     </widget>
     <widget class="QWidget" name="Layout2Page">
      <attribute name="title">
-      <string>Layout2</string>
+      <string>2분할 명패</string>
      </attribute>
      <widget class="QLabel" name="nameLabel_2_1">
       <property name="geometry">

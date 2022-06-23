@@ -21,6 +21,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         self.setupUi(self)
         self.initSetting()
 
+        
         self.connect_count=0 # 상태 레이블 연결 시도 횟수 설정        
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
         
@@ -252,6 +253,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
     # 활성화버튼 누르거나 ping 실패 시 일시적으로 링크 버튼 비활성화해주는 callback function 
     def disableLinkBtn(func): 
         def wrapper(self):
+            self.statusLabel.setText('연결 중...')
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
             self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
             func(self)
@@ -268,7 +270,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         return wrapper
     
     @disableCreateBtn
-    # create 버튼 클릭시 이벤트       
+    # create 버튼 클릭시 이벤트
     def createBtn_clicked(self):
         # 현재 tab이 어디인지 확인 (layout1 : 0 or layout2 : 1)
         global currentIndex
@@ -281,6 +283,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             # 공백인 경우 alert 띄움
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
+            QMessageBox.information(self,'알림','이미지 파일을 생성 중입니다.')
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
             directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
             # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
@@ -292,7 +295,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
                     # 폴더 생성 후, ppt 생성
                     self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,폴더이름,선택한 양식경로,입력값
                     self.makeJPG(directory,subject)                             #디렉토리 경로, 폴더이름
-                    QMessageBox.information(self,"message","이미지 파일이 성공적으로 생성되었습니다.")
+                    QMessageBox.information(self,"message",f"이미지 파일이 {directory}에 성공적으로 생성되었습니다.")
                     # 종종 pptx Open 시 원인이 파악되지 않은 오류가 발생하여 다음과 같이 예외처리함
                 except Exception as e:
                     QMessageBox.about(self,"message","시스템 오류로 인해 이미지 생성에 실패하였습니다. 컴퓨터를 재부팅한 후 다시 실행해주세요.")
@@ -390,6 +393,9 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         if self.connect_count>=4: #시도 횟수 2번 이상이면 0번으로 갱신 후 stop (한번 시도마다 2개의 ip에 대해 조사)
             self.timer.stop()
             self.connect_count=0
+            self.nameActivBtn.setDisabled(False)
+            self.wallActivBtn.setDisabled(False)
+            self.statusLabel.setText('연결 없음')
             return False
         self.connect_count+=1
         try: 
@@ -401,8 +407,9 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         
     # 비디오월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
     def update_network(self): 
-        self.nameLinkBtn.setDisabled(True)
-        self.wallLinkBtn.setDisabled(True)
+        self.statusLabel.setText('연결 중...')
+        self.nameActivBtn.setDisabled(True)
+        self.wallActivBtn.setDisabled(True)
         wall_ip="192.168.0.60" # 비디오월 ip
         name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
         
@@ -420,12 +427,13 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             self.timer.stop()
             self.connect_count=0
         else:
-            self.statusLabel.setText('연결 없음')
             self.statusLabel.setStyleSheet("color : red;")
             
     @disableLinkBtn
     # 스마트명패 활성화 버튼 눌렀을 때 onclick function
-    def onNameActivClick(self): 
+    def onNameActivClick(self):
+        self.wallActivBtn.setDisabled(True)
+        self.nameActivBtn.setDisabled(True) 
         os.startfile('enable.bat.lnk') # Wi-fi 활성화하고 이더넷 연결 비활성화시키는 배치파일 바로가기 파일 실행
         QMessageBox.information(self,'알림','스마트명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         self.timer.start()
@@ -433,6 +441,8 @@ class MyWindow(QMainWindow, form_class): # 메인 창
     @disableLinkBtn
     # 비디오월 활성화 버튼 눌렀을 때 onclick function
     def onWallActivClick(self): 
+        self.wallLinkBtn.setDisabled(True)
+        self.nameLinkBtn.setDisabled(True)
         os.startfile('disable.bat.lnk') # Wi-fi 비활성화하고 이더넷 연결 활성화시키는 배치파일 바로가기 파일 실행
         QMessageBox.information(self,'알림','비디오월이 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         self.timer.start()
