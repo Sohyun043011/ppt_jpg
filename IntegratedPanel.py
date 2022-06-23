@@ -11,6 +11,7 @@ from PyQt5.QtCore import QTimer, Qt
 import urllib.request
 from comtypes import client
 from datetime import datetime
+import copy
 
 dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage" # 스마트명패 웹 페이지 기본 디렉토리
 
@@ -108,7 +109,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             self.radioBtn_4.setChecked(True)
             pptx_fpath = os.path.dirname(os.path.abspath('확간양식.pptx'))+'\\확간양식.pptx'
            
-        print(currentIndex)
+        # print(currentIndex)
             
     #  라디오버튼을 통해 서식을 결정한 경우, 해당 서식 파일의 경로를 설정
     def onClicked(self):
@@ -143,15 +144,62 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         
     # 사용자가 선택한 양식을 가져와서 ppt 생성하는 함수
     def makePPT(self,directory,subject,pptx_fpath,inputValue):
+        
         prs = Presentation(pptx_fpath)                  # 양식 선택시 불러옴
-        #슬라이드 1~15 까지 돌면서,기재된 값(이름,직위)을 text_on_shape() 에 넘겨줌.
+        # ppt layout copy
+        if currentIndex==1:
+            # layout2 인 경우
+            # print(inputValue[1][1][1])      #두번째 요소
+            for i in range(15):
+                # if inputValue[i+1][1][1]      #두번째 요소의 이름이 없는 경우, layout1 형식으로 만들어줌
+                if inputValue[i+1][1][1]=='':
+                    source_slide=prs.slides[1]
+                else: 
+                    source_slide = prs.slides[0]                        #첫번째 슬라이드
+                slide_layout = prs.slide_layouts[6]                 #빈 페이지 슬라이드(새로 추가할 슬라이드)
+                copy_slide = prs.slides.add_slide(slide_layout)     #새로운 슬라이드 추가
+                # create image dict
+                imgDict = {}
+                for shape in source_slide.shapes:
+                    if 'Picture' in shape.name or 'logo' in shape.name:
+                        #save image
+                        with open(shape.name+'.jpg','wb') as f:
+                            f.write(shape.image.blob)
+                        # add image to dict
+                        imgDict[shape.name+'.jpg'] = [shape.left,shape.top,shape.width,shape.height]
+                    else:
+                        ele = shape.element
+                        new_ele = copy.deepcopy(ele)
+                        copy_slide.shapes._spTree.insert_element_before(new_ele,'p:exLst')
+                #  add picture
+                for k, v in imgDict.items():
+                    copy_slide.shapes.add_picture(k, v[0], v[1], v[2], v[3])
+                    os.remove(k)
+                # slide = prs.slides[i]
+                # inputVal = inputValue[i+1]
+                # shapes = slide.shapes
+                # self.text_on_shape(shapes,inputVal)
+                    prs.save(directory+'\\'+subject+'.pptx')            # /팀명/subject이름/ 폴더에 만든 ppt 저장.
+            
+            del_slide = [prs.slides[0],prs.slides[1]]
+            for i in range(2):
+                slide_dict={}
+                for idx,value in enumerate(prs.slides._sldIdLst):
+                    slide_dict[value.id] = [idx,value.rId]
+                slide_id = del_slide[i].slide_id
+                prs.part.drop_rel(slide_dict[slide_id][1])
+                del prs.slides._sldIdLst[slide_dict[slide_id][0]]
+                prs.save(directory+'\\'+subject+'.pptx')
+            print('copy 완료')
+    
+        #  슬라이드 1~15 까지 돌면서,기재된 값(이름,직위)을 text_on_shape() 에 넘겨줌.
         for i in range(15):
             slide = prs.slides[i]
             inputVal = inputValue[i+1]
             shapes = slide.shapes
             self.text_on_shape(shapes,inputVal)
         prs.save(directory+'\\'+subject+'.pptx')            # /팀명/subject이름/ 폴더에 만든 ppt 저장.
-    
+        
     # makePPT로 만든 ppt 를 JPG로 변환해주는 함수 .1~15개 슬라이드를 1~30 장으로 변환한다. 
     def makeJPG(self,directory,subject):
         ppt = client.CreateObject('Powerpoint.Application')
@@ -181,9 +229,9 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         else:
             # layout2 인 경우(이름2개, 직위2개)
             for i in range(1,15):
-                nameChild_L = self.findChild(QLineEdit,"InputName_%d_L" % (i)).text()
+                nameChild_L = self.findChild(QLineEdit,"InputName_%d_L" % (i)).text()       #필수
                 nameChild_R = self.findChild(QLineEdit,"InputName_%d_R" % (i)).text()
-                namePos_L = self.findChild(QLineEdit,"InputPos_%d_L" % (i)).text()
+                namePos_L = self.findChild(QLineEdit,"InputPos_%d_L" % (i)).text()          #필수
                 namePos_R = self.findChild(QLineEdit,"InputPos_%d_R" % (i)).text()
                 inputValue[i] = [[nameChild_L,nameChild_R],[namePos_L,namePos_R]]
             inputValue[15]=[['',''],['','']]
@@ -215,13 +263,14 @@ class MyWindow(QMainWindow, form_class): # 메인 창
                 font_name = p.runs[0].font.name         # 선택한 양식 텍스트상자의 폰트 이름
                 text_frame.clear()                      # 폰트 설정 다 받아온 뒤, 텍스트 상자 비워줌
                 # 정렬 설정 : 중간정렬
-                p.alighnment = PP_ALIGN.CENTER   
+                
                 run = p.add_run()
                 run.text = inputVal[0] if shape.name=="name" else inputVal[1]       #이름이면 inputVal 배열의 첫번째 인자를 넣고, pos 이면 배열의 두번째 인자를 넣음
                 # 위에서 저장해 둔 폰트 설정을 그대로 적용함.
                 font = run.font 
                 font.name = font_name
                 font.size = Pt(font_size)
+                p.alighnment = PP_ALIGN.CENTER   
                 if font_bold==True:
                     # bold 설정 되어있다면
                     font.bold = font_bold
