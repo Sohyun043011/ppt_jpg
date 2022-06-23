@@ -371,8 +371,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             inputValue = self.inputValue()      #사용자가 입력한 정보
             directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
             # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
-            self.jpgpath_label.setText('저장 경로 : '+directory) if currentIndex==0 else self.jpgpath_label_2.setText('저장 경로 : '+directory)
-    
+            
             
             if os.path.exists(directory):
                 # 이미 있는 폴더인 경우, 오늘 날짜를 뒤에 붙여줌
@@ -384,6 +383,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
                 directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
                 # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             try:
+                self.jpgpath_label.setText('저장 경로 : '+directory) if currentIndex==0 else self.jpgpath_label_2.setText('저장 경로 : '+directory)
                 os.makedirs(directory)
                 # 폴더 생성 후, ppt 생성
                 print(directory,subject,pptx_fpath)
