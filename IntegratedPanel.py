@@ -370,8 +370,8 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
             
             inputValue = self.inputValue()      #사용자가 입력한 정보
-            # directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
-            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+            # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
             
             if os.path.exists(directory):
                 # 이미 있는 폴더인 경우, 오늘 날짜를 뒤에 붙여줌
