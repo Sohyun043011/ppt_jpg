@@ -216,8 +216,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         for i in range(15):
             os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str((i+1)) + '.jpg')
             shutil.copyfile(directory+"\\"+str((i+1)) + '.jpg',directory+"\\"+str(15+(i+1)) + '.jpg')
-        self.jpgpath_label.setText('저장 경로 : '+directory)
-    
+        
     # 사용자가 [이름, 직위] 입력 박스에 적은 값을 받아오는 함수  
     def inputValue(self):
         inputValue= {}
@@ -372,6 +371,8 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             inputValue = self.inputValue()      #사용자가 입력한 정보
             directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
             # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            self.jpgpath_label.setText('저장 경로 : '+directory) if currentIndex==0 else self.jpgpath_label_2.setText('저장 경로 : '+directory)
+    
             
             if os.path.exists(directory):
                 # 이미 있는 폴더인 경우, 오늘 날짜를 뒤에 붙여줌
