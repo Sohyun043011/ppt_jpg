@@ -1,5 +1,5 @@
 from PyQt5 import uic
-import os, shutil, webbrowser
+import os, shutil, webbrowser, subprocess
 import sys
 from PyQt5.QtWidgets import *
 from pptx import Presentation
@@ -84,6 +84,8 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         self.wallActivBtn.clicked.connect(self.onWallActivClick)
         self.nameLinkBtn.clicked.connect(self.onNameOpenClick)
         self.nameActivBtn.clicked.connect(self.onNameActivClick)
+        
+        self.menualBtn.clicked.connect(self.onMenualBtnClick)
         
         self.set_style() # UI에 별도의 css 지정
         
@@ -368,6 +370,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         # QListWidget으로 QCombobox에서 지정된 디렉토리 하위 폴더 선택 리스트 표출
         self.dialog.listWidget=QListWidget(self.dialog)
         self.dialog.listWidget.setGeometry(10,80,400,200) 
+        self.dialog.listWidget.setSelectionMode(QAbstractItemView.MultiSelection)
         
         self.dialog.deleteBtn=QPushButton('삭제하기',self.dialog)
         self.dialog.deleteBtn.setGeometry(10,300,100,50) 
@@ -378,12 +381,12 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         for folder in folder_list:
             self.dialog.combo_box.addItem(folder)
         self.dialog.combo_box.move(10,40)
-        self.dialog.combo_box.activated[str].connect(self.onActived)
+        self.dialog.combo_box.activated[str].connect(self.comboBoxRefresh)
     
         self.dialog.show()
     
     # QCombobox list(부서명) 선택 시 하위 폴더(서식폴더) 리스트 가져오기
-    def onActived(self, text):
+    def comboBoxRefresh(self, text):
         self.dialog.listWidget.clear() # listWidget 비워주기
     
         # QListWidget 항목 추가 (콤보박스에서 지정된 디렉토리에 존재하는 모든 부서 폴더명 가져오기)
@@ -400,27 +403,30 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             return
         
         # 삭제하려는 폴더 절대경로
-        folderPath=os.path.join(dataImage_default_path, self.dialog.combo_box.currentText() ,temp_path[0])
+        folderPath=os.path.join(dataImage_default_path, self.dialog.combo_box.currentText())
 
         if os.path.exists(folderPath): # 삭제하려는 폴더가 존재할 때
             # 지정된 폴더의 상위폴더가 dataImage일 경우 (부서 카테고리를 지우려고 하는 경우)
-            if folderPath.split('\\')[-2]=='dataImage':
+            if folderPath.split('\\')[-1]=='dataImage':
                 QMessageBox.warning(self, '알림', '부서 카테고리는 삭제할 수 없습니다. 다시 시도해주세요.')
                 return
-            if '/'.join(folderPath.split('\\')[:-2])!='C:/Server/Gachi/Qname/dataImage':
+            if '/'.join(folderPath.split('\\')[:-1])!='C:/Server/Gachi/Qname/dataImage':
                 QMessageBox.warning(self, '알림', '다른 디렉토리에 존재하는 파일은 삭제할 수 없습니다. 다시 시도해주세요.')
                 return
             
             # 알림창에 Yes | No 두 개의 버튼 선택지를 만들고 Reply를 넘겨받음
-            buttonReply=QMessageBox.information(self,'알림',f'정말로 {temp_path[0]} 폴더를 삭제하시겠습니까?', 
+            buttonReply=QMessageBox.information(self,'알림',f'정말로 해당 항목을 삭제하시겠습니까?', 
                                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
             if buttonReply==QMessageBox.Yes:
                 
                 try:
-                    shutil.rmtree(folderPath) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
+                    for file in temp_path:
+                        print(file)
+                        shutil.rmtree(os.path.join(folderPath,file)) # 폴더 하위에 파일의 유무에 관계없이 무조건 삭제
+                    
                     QMessageBox.information(self,'알림','폴더와 하위 파일들이 삭제되었습니다.')
                     lst_modelIndex=self.dialog.listWidget.selectedIndexes()
-                    for modelIndex in lst_modelIndex:
+                    for modelIndex in reversed(sorted(lst_modelIndex)):
                         self.dialog.listWidget.model().removeRow(modelIndex.row())
                 # 폴더 아래에 삭제할 수 없는(관리자 권한 설정 또는 사용 중인 프로세스가 있을 때) 조건일 때의 예외 처리 
                 except Exception as e:
@@ -493,6 +499,10 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         webbrowser.get(self.chrome_path).open("192.168.0.60")
     def onNameOpenClick(self):
         webbrowser.get(self.chrome_path).open("http://192.168.0.103/Qname/empMain.aspx?readImage=ok")
+    
+    # PDF 메뉴얼 열기 버튼 클릭 시 메뉴얼 파일 열림
+    def onMenualBtnClick(self): 
+        subprocess.Popen(['menual.pdf'],shell=True)
     
 if __name__ == "__main__":
     try:
