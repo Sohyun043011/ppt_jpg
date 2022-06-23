@@ -10,7 +10,7 @@
 }
 
 #createBtn:disabled, #deleteBtn:disabled, #wallActivBtn:disabled ,#nameActivBtn:disabled, #wallLinkBtn:disabled, #nameLinkBtn:disabled, 
-#createBtn_3:disabled , #deleteBtn_3:disabled{
+#createBtn_2:disabled , #deleteBtn_2:disabled{
     background-color: rgb(204,204,204);
 	color: red;
 }
@@ -29,3 +29,8 @@ QTabWidget::pane {
     background: transparent;
     border:0;
 }
+
+#formSelect_scrollArea, #formSelect_scrollArea_2{
+	border: 1px solid black;
+}
+

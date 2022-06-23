@@ -980,7 +980,7 @@
        <rect>
         <x>930</x>
         <y>20</y>
-        <width>131</width>
+        <width>141</width>
         <height>551</height>
        </rect>
       </property>
@@ -1010,11 +1010,14 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>129</width>
+         <width>139</width>
          <height>549</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout">
+        <property name="spacing">
+         <number>10</number>
+        </property>
         <item>
          <widget class="QRadioButton" name="radioBtn_1">
           <property name="text">
@@ -1331,7 +1334,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Create JPG Files</string>
+          <string>JPG 파일 생성</string>
          </property>
         </widget>
        </item>
@@ -1344,7 +1347,7 @@
           </size>
          </property>
          <property name="text">
-          <string>Delete JPG Files</string>
+          <string>JPG 파일 삭제</string>
          </property>
         </widget>
        </item>
