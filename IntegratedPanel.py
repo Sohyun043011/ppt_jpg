@@ -10,6 +10,7 @@ from PyQt5.QtGui import QPainter, QPen, QColor, QPixmap , QIcon
 from PyQt5.QtCore import QTimer, Qt
 import urllib.request
 from comtypes import client
+from datetime import datetime
 
 dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage" # 스마트명패 웹 페이지 기본 디렉토리
 
@@ -24,11 +25,12 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         
         self.connect_count=0 # 상태 레이블 연결 시도 횟수 설정        
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
-        
+       
         self.timer = QTimer(self) # 네트워크 상태 측정을 위한 타이머
         self.timer.setInterval(6000) # 6000ms(6초)에 한번씩 ping 보내주기
         self.timer.timeout.connect(self.update_network)
         self.timer.start()
+        
         
     # 초기 UI 세팅   
     def initSetting(self): 
@@ -43,20 +45,31 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         pixmap1 = QPixmap("./양식1.jpg")
         pixmap2 = QPixmap("./양식2.jpg")
         pixmap3 = QPixmap("./양식3.jpg")
+        pixmap4 = QPixmap("./확간양식.jpg")
 
         self.image1.setPixmap(QPixmap(pixmap1))
         self.image2.setPixmap(QPixmap(pixmap2))
         self.image3.setPixmap(QPixmap(pixmap3))
+        self.image4.setPixmap(QPixmap(pixmap4))
+        self.LayoutTab.currentChanged.connect(self.onChange)
         
         # 초기 상태 레이블값 설정
         self.statusLabel.setText('연결 없음')
         self.statusLabel.setStyleSheet("color : red")
         
+        self.LayoutTab.setCurrentIndex(0)
+        
+        # 1번 레이아웃을 프로그램 시작 시 기본 선택 되게 설정
         # 서식 버튼 설정
         self.radioBtn_1.toggled.connect(self.onClicked)
         self.radioBtn_2.toggled.connect(self.onClicked)
         self.radioBtn_3.toggled.connect(self.onClicked)
-        self.radioBtn_1.setChecked(True) # 1번 라디오 버튼 기본 지정
+        self.radioBtn_4.toggled.connect(self.onClicked)             #확간 양식    
+        self.radioBtn_1.setChecked(True)
+        # self.radioBtn_4.setChecked(True)
+        
+        # 1번 라디오 버튼 기본 지정
+        # 확간양식 라디오 버튼 기본 지정
         
         self.selectForm.clicked.connect(self.onClickSelect)
         self.selectForm_2.clicked.connect(self.onClickSelect)
@@ -73,24 +86,44 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         self.nameActivBtn.clicked.connect(self.onNameActivClick)
         
         self.set_style() # UI에 별도의 css 지정
-        self.LayoutTab.setCurrentIndex(0)       # 1번 레이아웃을 프로그램 시작 시 기본 선택 되게 설정
+        
+    
     
     # UI에 추가 css 속성 설정
     def set_style(self): 
         with open("update_style", 'r') as f:
             self.setStyleSheet(f.read())    
         
+    def onChange(self):
+        # tabwidget이 변경될 때 할 일
+        global pptx_fpath
+        currentIndex = self.LayoutTab.currentIndex()
+        if currentIndex==0:
+            # 첫번째 layout인 경우, radiobtn4 false로
+            self.radioBtn_1.setChecked(True)
+            self.radioBtn_4.setChecked(False)
+            pptx_fpath = os.path.dirname(os.path.abspath('양식1.pptx'))+'\\양식1.pptx'
+        else:
+            self.radioBtn_1.setChecked(False)
+            self.radioBtn_4.setChecked(True)
+            pptx_fpath = os.path.dirname(os.path.abspath('확간양식.pptx'))+'\\확간양식.pptx'
+           
+        print(currentIndex)
+            
     #  라디오버튼을 통해 서식을 결정한 경우, 해당 서식 파일의 경로를 설정
     def onClicked(self):
         global pptx_fpath
-        radioBtn = self.sender()
-        if radioBtn.text() == '서식1':
+        radiobtn = self.sender()
+        if self.radioBtn_1.isChecked():
             pptx_fpath = os.path.dirname(os.path.abspath('양식1.pptx'))+'\\양식1.pptx'
-        elif radioBtn.text() == '서식2':
+        elif self.radioBtn_2.isChecked():
             pptx_fpath = os.path.dirname(os.path.abspath('양식2.pptx'))+'\\양식2.pptx'
-        elif radioBtn.text() == '서식3':
+        elif self.radioBtn_3.isChecked():
             pptx_fpath =  os.path.dirname(os.path.abspath('양식3.pptx'))+'\\양식3.pptx'
+        elif self.radioBtn_4.isChecked() and radiobtn.text()=='서식 1':
+            pptx_fpath = os.path.dirname(os.path.abspath('확간양식.pptx'))+'\\확간양식.pptx'
             
+                
     #  회의실 책상 나타낸 도형 그리기 함수
     def paintEvent(self,event):
         qp = QPainter()
@@ -103,10 +136,10 @@ class MyWindow(QMainWindow, form_class): # 메인 창
     def drawRectangles(self,qp):
         qp.setBrush(QColor(255, 136, 79))
         qp.setPen(QPen(QColor(255, 136, 79), 3))
-        qp.drawRect(529, 265, 221, 30)
-        qp.drawRect(529, 265, 30, 361)
-        qp.drawRect(720, 265, 30, 361)
-        qp.drawRect(270, 230, 20, 191)
+        qp.drawRect(529, 265, 201, 15)
+        qp.drawRect(529, 265, 15, 361)
+        qp.drawRect(720, 265, 15, 361)
+        qp.drawRect(270, 230, 15, 191)
         
     # 사용자가 선택한 양식을 가져와서 ppt 생성하는 함수
     def makePPT(self,directory,subject,pptx_fpath,inputValue):
@@ -133,6 +166,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         for i in range(15):
             os.rename(directory+"\\슬라이드" + str(i+1) + ".JPG", directory + "\\" + str((i+1)) + '.jpg')
             shutil.copyfile(directory+"\\"+str((i+1)) + '.jpg',directory+"\\"+str(15+(i+1)) + '.jpg')
+        self.jpgpath_label.setText('저장 경로 : '+directory)
     
     # 사용자가 [이름, 직위] 입력 박스에 적은 값을 받아오는 함수  
     def inputValue(self):
@@ -275,33 +309,40 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         # 현재 tab이 어디인지 확인 (layout1 : 0 or layout2 : 1)
         global currentIndex
         currentIndex = self.LayoutTab.currentIndex()
-        
         # /팀이름/subject/ 로 폴더 생성
         subject = self.subject.text() if currentIndex==0 else self.subject_2.text()         # 폴더 이름
-        
         if subject=='':
             # 공백인 경우 alert 띄움
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
             QMessageBox.information(self,'알림','이미지 파일을 생성 중입니다.')
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
-            directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
-            # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            
             inputValue = self.inputValue()      #사용자가 입력한 정보
-            if not os.path.exists(directory):
+            # directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+            directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            
+            if os.path.exists(directory):
+                # 이미 있는 폴더인 경우, 오늘 날짜를 뒤에 붙여줌
+                today = datetime.today().strftime("%Y%m%d") #오늘 날짜 yyyymmdd 형태
+                hour = datetime.today().strftime("%H%M%S")  #현재 시간
+                old_subject = subject
+                subject = subject+'_'+today+'_'+hour
+                QMessageBox.about(self,"message",old_subject+"는 이미 있는 폴더입니다.\n"+subject+" 해당 이름으로 생성합니다.")
+                # directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
+                directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
+            try:
                 os.makedirs(directory)
-                
-                try:
-                    # 폴더 생성 후, ppt 생성
-                    self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,폴더이름,선택한 양식경로,입력값
-                    self.makeJPG(directory,subject)                             #디렉토리 경로, 폴더이름
-                    QMessageBox.information(self,"message",f"이미지 파일이 {directory}에 성공적으로 생성되었습니다.")
+                # 폴더 생성 후, ppt 생성
+                print(directory,subject,pptx_fpath)
+                self.makePPT(directory,subject,pptx_fpath,inputValue)       #디렉토리 경로,폴더이름,선택한 양식경로,입력값
+                self.makeJPG(directory,subject)                             #디렉토리 경로, 폴더이름
+                QMessageBox.information(self,"message","이미지 파일이 성공적으로 생성되었습니다.")
                     # 종종 pptx Open 시 원인이 파악되지 않은 오류가 발생하여 다음과 같이 예외처리함
-                except Exception as e:
-                    QMessageBox.about(self,"message","시스템 오류로 인해 이미지 생성에 실패하였습니다. 컴퓨터를 재부팅한 후 다시 실행해주세요.")
-            else: 
-                # 이미 있는 폴더인 경우, alert 띄움
-                QMessageBox.about(self,"message",subject+"는 이미 있는 폴더입니다. 다른 이름을 설정해주세요.")
+            except Exception as e:
+                print(e)
+                QMessageBox.about(self,"message","시스템 오류로 인해 이미지 생성에 실패하였습니다. 컴퓨터를 재부팅한 후 다시 실행해주세요.")
+            
                 
             # create 버튼실행이 완료된 경우, subject 입력박스와 선택 서식 표출 박스 비워줌.
             self.subject.clear()
