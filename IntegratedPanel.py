@@ -12,7 +12,7 @@ import urllib.request
 from comtypes import client
 from datetime import datetime
 
-dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage" # 디지털명패 웹 페이지 기본 디렉토리
+dataImage_default_path="C:\\Server\\Gachi\\Qname\\dataImage" # 스마트명패 웹 페이지 기본 디렉토리
 
 form_class = uic.loadUiType("ppt_to_jpg.ui")[0] # ppt_to_jpg.ui(xml 형식)에서 레이아웃 및 텍스트 설정값 조정
 
@@ -22,6 +22,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         self.setupUi(self)
         self.initSetting()
 
+        
         self.connect_count=0 # 상태 레이블 연결 시도 횟수 설정        
         self.chrome_path="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe %s" # Chrome 설치 위치
        
@@ -286,6 +287,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
     # 활성화버튼 누르거나 ping 실패 시 일시적으로 링크 버튼 비활성화해주는 callback function 
     def disableLinkBtn(func): 
         def wrapper(self):
+            self.statusLabel.setText('연결 중...')
             self.nameLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
             self.wallLinkBtn.setDisabled(True) # 초기 링크 버튼 비활성화
             func(self)
@@ -302,7 +304,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         return wrapper
     
     @disableCreateBtn
-    # create 버튼 클릭시 이벤트       
+    # create 버튼 클릭시 이벤트
     def createBtn_clicked(self):
         # 현재 tab이 어디인지 확인 (layout1 : 0 or layout2 : 1)
         global currentIndex
@@ -313,6 +315,7 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             # 공백인 경우 alert 띄움
             QMessageBox.about(self,"message","폴더명을 입력해주세요.")
         else:
+            QMessageBox.information(self,'알림','이미지 파일을 생성 중입니다.')
             deptLabel = self.deptName.currentText() if currentIndex==0 else self.deptName_2.currentText()   # 부서명
             
             inputValue = self.inputValue()      #사용자가 입력한 정보
@@ -431,6 +434,9 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         if self.connect_count>=4: #시도 횟수 2번 이상이면 0번으로 갱신 후 stop (한번 시도마다 2개의 ip에 대해 조사)
             self.timer.stop()
             self.connect_count=0
+            self.nameActivBtn.setDisabled(False)
+            self.wallActivBtn.setDisabled(False)
+            self.statusLabel.setText('연결 없음')
             return False
         self.connect_count+=1
         try: 
@@ -440,42 +446,46 @@ class MyWindow(QMainWindow, form_class): # 메인 창
         except urllib.request.URLError as err:
             return False # 연결 실패
         
-    # 스마트월 ip와 디지털명패 ip 각각의 연결성을 확인 후 상태 표시
+    # 비디오월 ip와 스마트명패 ip 각각의 연결성을 확인 후 상태 표시
     def update_network(self): 
-        self.nameLinkBtn.setDisabled(True)
-        self.wallLinkBtn.setDisabled(True)
-        wall_ip="192.168.0.60" # 스마트월 ip
-        name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #디지털명패 ip
+        self.statusLabel.setText('연결 중...')
+        self.nameActivBtn.setDisabled(True)
+        self.wallActivBtn.setDisabled(True)
+        wall_ip="192.168.0.60" # 비디오월 ip
+        name_ip="192.168.0.103/Qname/empMain.aspx?readImage=ok" #스마트명패 ip
         
         # 각각의 서비스에 연결 성공 시 링크 버튼 파란색으로 지정 후 활성화
         if self.ping(wall_ip):
-            self.statusLabel.setText('스마트월 연결 성공')
+            self.statusLabel.setText('비디오월 연결 성공')
             self.statusLabel.setStyleSheet("color : blue;")
             self.wallLinkBtn.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         elif self.ping(name_ip):
-            self.statusLabel.setText('디지털명패 연결 성공')
+            self.statusLabel.setText('스마트명패 연결 성공')
             self.statusLabel.setStyleSheet("color : blue;")
             self.nameLinkBtn.setDisabled(False)
             self.timer.stop()
             self.connect_count=0
         else:
-            self.statusLabel.setText('연결 없음')
             self.statusLabel.setStyleSheet("color : red;")
             
     @disableLinkBtn
-    # 디지털명패 활성화 버튼 눌렀을 때 onclick function
-    def onNameActivClick(self): 
+    # 스마트명패 활성화 버튼 눌렀을 때 onclick function
+    def onNameActivClick(self):
+        self.wallActivBtn.setDisabled(True)
+        self.nameActivBtn.setDisabled(True) 
         os.startfile('enable.bat.lnk') # Wi-fi 활성화하고 이더넷 연결 비활성화시키는 배치파일 바로가기 파일 실행
-        QMessageBox.information(self,'알림','디지털명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
+        QMessageBox.information(self,'알림','스마트명패가 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         self.timer.start()
 
     @disableLinkBtn
-    # 스마트월 활성화 버튼 눌렀을 때 onclick function
+    # 비디오월 활성화 버튼 눌렀을 때 onclick function
     def onWallActivClick(self): 
+        self.wallLinkBtn.setDisabled(True)
+        self.nameLinkBtn.setDisabled(True)
         os.startfile('disable.bat.lnk') # Wi-fi 비활성화하고 이더넷 연결 활성화시키는 배치파일 바로가기 파일 실행
-        QMessageBox.information(self,'알림','스마트월이 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
+        QMessageBox.information(self,'알림','비디오월이 활성화되었습니다. 아래 링크 버튼이 활성화가 될 때까지 잠시만 기다려주세요.')
         self.timer.start()
     
     # 링크 클릭 시 브라우저 오픈
