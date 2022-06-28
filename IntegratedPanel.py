@@ -371,18 +371,14 @@ class MyWindow(QMainWindow, form_class): # 메인 창
             inputValue = self.inputValue()      #사용자가 입력한 정보
             directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
             # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
-            
-            
-            if os.path.exists(directory):
-                # 이미 있는 폴더인 경우, 오늘 날짜를 뒤에 붙여줌
+            try:
                 today = datetime.today().strftime("%Y%m%d") #오늘 날짜 yyyymmdd 형태
                 hour = datetime.today().strftime("%H%M%S")  #현재 시간
                 old_subject = subject
                 subject = subject+'_'+today+'_'+hour
-                QMessageBox.about(self,"message",old_subject+"는 이미 있는 폴더입니다.\n"+subject+" 해당 이름으로 생성합니다.")
+                QMessageBox.about(self,"message",subject+" 의 이름으로 폴더가 생성되었습니다.")
                 directory = os.path.join(dataImage_default_path,deptLabel,subject)     # 디렉토리 경로
-                # directory = os.getcwd()+"\\"+deptLabel+"\\"+subject
-            try:
+                
                 self.jpgpath_label.setText('저장 경로 : '+directory) if currentIndex==0 else self.jpgpath_label_2.setText('저장 경로 : '+directory)
                 os.makedirs(directory)
                 # 폴더 생성 후, ppt 생성
